@@ -1,14 +1,31 @@
-===== Colin =====
+/*jshint browser: true, devel: true */
+/*globals Sail, jQuery, Rollcall */
+var rutgers = window.rutgers || {};
+
+rutgers = (function() {
+    "use strict";
+    var self = {};
+
+	self.init = function() {
+		alert('I work!');
+	}
+
+/* ===== Colin ===== */
 
 
 
 
-=================
+/* ================= */
 
-===== Armin =====
-
-
+/* ===== Armin ===== */
 
 
 
-=================
+
+
+/* ================= */
+
+    return self;
+})();
+
+
