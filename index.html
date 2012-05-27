@@ -16,6 +16,7 @@
         <script>
             jQuery(document).bind("mobileinit", function(){
               jQuery.mobile.defaultPageTransition = 'none'; // disable transitions
+              jQuery.mobile.allowCrossDomainPages = true; // this might be necessary to do CORS cross domain calls
             });
         </script>
     </head>
@@ -29,21 +30,21 @@
             <div data-role="content">
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textinput1">
+                        <label for="username">
                             Username
                         </label>
-                        <input id="textinput1" placeholder="" value="" type="text" />
+                        <input id="username" placeholder="" value="" type="text" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textinput2">
+                        <label for="password">
                             Password
                         </label>
-                        <input id="textinput2" placeholder="" value="" type="password" />
+                        <input id="password" placeholder="" value="" type="password" />
                     </fieldset>
                 </div>
-                <input type="submit" data-theme="b" value="Submit" />
+                <input class="submit-button" type="submit" data-theme="e" value="Submit" />
                 <a href="#home" class="add-report-button" data-role="button" data-theme="b" data-inline="true" data-icon="plus">Next page (demo)   </a>
             </div>
         </div>
