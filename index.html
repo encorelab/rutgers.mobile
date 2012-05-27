@@ -10,9 +10,10 @@
         <style>
             /* App custom styles */
         </style>
-        <script src="js/rutgers.mobile.js"></script>
-        <script src="js/jquery-1.7.1.min.js"></script>
-        <script src="js/jquery.mobile-1.1.0.min.js"></script>
+        <script src="js/libs/jquery-1.7.1.min.js"></script>
+        <script src="js/libs/jquery.mobile-1.1.0.min.js"></script>
+        <script src="js/libs/underscore-1.3.1.js"></script>
+        <script src="js/rutgers.mobile.js"></script>        
         <script>
             jQuery(document).bind("mobileinit", function(){
               jQuery.mobile.defaultPageTransition = 'none'; // disable transitions
@@ -29,18 +30,18 @@
             <div data-role="content">
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textinput1">
+                        <label for="username-input">
                             Username
                         </label>
-                        <input id="textinput1" placeholder="" value="" type="text" />
+                        <input id="username-input" placeholder="" value="" type="text" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textinput2">
+                        <label for="password-input">
                             Password
                         </label>
-                        <input id="textinput2" placeholder="" value="" type="password" />
+                        <input id="password-input" placeholder="" value="" type="password" />
                     </fieldset>
                 </div>
                 <input type="submit" data-theme="b" value="Submit" />
@@ -69,43 +70,43 @@
                     </p>
                 </div>
                 <div data-role="collapsible-set" data-theme="" data-content-theme="">
-                    <div data-role="collapsible" data-collapsed="false">
-                        <h3>
-                            Transect 2 [Not done]
+                    <div class="first-transect-group" data-role="collapsible" data-collapsed="false">             <!-- TODO -->
+                        <h3 class="accordion-header">
+                            Transect 2 [not done]
                         </h3>
-                        <a data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-1" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
                             Plot 1
                         </a>
-                        <a data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
+                        <a class="plot-2" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
                             Plot 2
                         </a>
-                        <a data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
+                        <a class="plot-3" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
                             Plot 3
                         </a>
-                        <a data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
+                        <a class="plot-4" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
                             Plot 4
                         </a>
-                        <a data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
+                        <a class="plot-5" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
                             Plot 5
                         </a>
                     </div>
-                    <div data-role="collapsible" data-collapsed="false">
-                        <h3>
+                    <div class="second-transect-set" data-role="collapsible" data-collapsed="false">
+                        <h3 class="accordion-header">
                             Transect 3 [done]
                         </h3>
-                        <a data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-1" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                             Plot 1
                         </a>
-                        <a data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-2" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                             Plot 2
                         </a>
-                        <a data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-3" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                             Plot 3
                         </a>
-                        <a data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-4" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                             Plot 4
                         </a>
-                        <a data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-5" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                             Plot 5
                         </a>
                     </div>
@@ -210,8 +211,8 @@
                 <a data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                     Done
                 </a>
-                <a data-role="button" data-transition="none" href="#home" data-icon="home" data-iconpos="left">
-                    Home
+                <a data-role="button" data-transition="none" href="#home" data-icon="arrow-l" data-iconpos="left">
+                    Cancel
                 </a>
             </div>
             <div data-theme="a" data-role="footer">
@@ -242,8 +243,11 @@
                 <a data-role="button" data-transition="none" data-theme="e" href="#plants-observation-category" data-icon="plus" data-iconpos="left">
                     Add new observation
                 </a>
-                <a data-role="button" data-transition="none" href="#home" data-icon="home" data-iconpos="left">
-                    Home
+<!--                 <a data-role="button" data-transition="none" data-theme="e" href="#plants-observation-category" data-icon="plus" data-iconpos="left">
+                    Edit previous observation
+                </a>  NEED THE EDIT BUTTON, BUT UNCLEAR FROM THE MOCKUP WHERE IT IS REQUIRED -->              
+                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-l" data-iconpos="left">
+                    Back to Plot <span class="back-button">2</span>                  <!-- TODO add dynamic button text, linking -->
                 </a>
             </div>
         </div>
@@ -358,8 +362,8 @@
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
                 <input type="submit" data-theme="b" value="Submit" />
-                <a data-role="button" data-transition="none" href="#home" data-icon="home" data-iconpos="left">
-                    Home
+                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
                 </a>
             </div>
         </div>
@@ -456,8 +460,8 @@
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
                 <input type="submit" data-theme="b" value="Submit" />
-                <a data-role="button" data-transition="none" href="#page8" data-icon="home" data-iconpos="left">
-                    Home
+                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
                 </a>
             </div>
         </div>
@@ -510,8 +514,8 @@
                         </a>
                     </li>
                 </ul>
-                <a data-role="button" data-transition="none" href="#home" data-icon="home" data-iconpos="left">
-                    Home
+                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
                 </a>
             </div>
         </div>
@@ -577,8 +581,8 @@
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
                 <input type="submit" data-theme="b" value="Submit" />
-                <a data-role="button" data-transition="none" href="#home" data-icon="home" data-iconpos="left">
-                    Home
+                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
                 </a>
             </div>
         </div>
@@ -607,8 +611,8 @@
                 <a data-role="button" data-transition="none" data-theme="e" href="#add-soil-and-water-observation" data-icon="plus" data-iconpos="left">
                     Add new observation
                 </a>
-                <a data-role="button" data-transition="none" href="#home" data-icon="home" data-iconpos="left">
-                    Home
+                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
                 </a>
             </div>
         </div>
@@ -751,8 +755,8 @@
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
                 <input type="submit" data-theme="b" value="Submit" />
-                <a data-role="button" data-transition="none" href="#home" data-icon="home" data-iconpos="left">
-                    Home
+                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
                 </a>
             </div>
         </div>
@@ -781,8 +785,8 @@
                 <a data-role="button" data-transition="none" data-theme="e" href="#add-weather-observation" data-icon="plus" data-iconpos="left">
                     Add new observation
                 </a>
-                <a data-role="button" data-transition="none" href="#home" data-icon="home" data-iconpos="left">
-                    Home
+                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
                 </a>
             </div>
         </div>
@@ -872,8 +876,8 @@
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
                 <input type="submit" data-theme="b" value="Submit" />
-                <a data-role="button" data-transition="none" href="#page8" data-icon="home" data-iconpos="left">
-                    Home
+                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
                 </a>
             </div>
         </div>
