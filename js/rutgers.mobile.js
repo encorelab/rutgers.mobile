@@ -147,7 +147,9 @@ b.attr('data-icon-pos', 'left');*/
 
 
 /* ================= */
-
+  // making account and token available outside (via rutgers.token)
+  self.account = account;
+  self.token = token;
   return self;
 })();
 
