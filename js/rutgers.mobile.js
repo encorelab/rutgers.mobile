@@ -40,10 +40,11 @@ rutgers = (function() {
     jQuery('#add-weather-observation .submit-button').click(function() {
       var weatherObservation = new rutgers.model.WeatherObservation();
       var observationTitle = jQuery('#weather-observation-title').val();
+      var observationNote = jQuery('#weather-observation-note').val();
       console.log('Submitted weather observation. Title: '+observationTitle);
       weatherObservation.set('title', observationTitle);
       //weatherObservation.set('conditions', observationTitle);
-      //weatherObservation.set('note', observationTitle);
+      weatherObservation.set('note', observationNote);
       //weatherObservation.set('student_id', observationTitle);
       weatherObservation.save();
     });
