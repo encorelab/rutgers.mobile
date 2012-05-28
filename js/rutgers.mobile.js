@@ -91,7 +91,7 @@ b.attr('data-icon-pos', 'left');*/
   var login = function(account, successCallback, errorCallback) {
     var login = account.login;
     var password = account.password;
-    var url = self.url + '/login.json';
+    var url = self.url + '/sessions.json';
 
     var data = {
       session: {
