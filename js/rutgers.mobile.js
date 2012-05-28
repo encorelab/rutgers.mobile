@@ -85,7 +85,8 @@ b.attr('data-icon-pos', 'left');*/
     token = success.token;
     console.log('Success! Account ID: '+account.id+' token: '+token);
     // go to href="#home"
-    $.mobile.changePage("#home", "");
+    jQuery('#home .username-display').text(account.login);
+    jQuery.mobile.changePage("#home", "");
   };
 
   var loginError = function(error){
