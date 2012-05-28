@@ -29,11 +29,25 @@ rutgers = (function() {
       jQuery('#username').focus();
     });
 
+    // submit button for login
     jQuery('#login .submit-button').click(function(){
       account.login = jQuery('#username').val();
       account.password = jQuery('#password').val();
       login(account, loginSuccess, loginError);
     });
+
+    // submit button to store weather observation
+    jQuery('#add-weather-observation .submit-button').click(function() {
+      var weatherObservation = new rutgers.model.WeatherObservation();
+      var observationTitle = jQuery('#weather-observation-title').val();
+      console.log('Submitted weather observation. Title: '+observationTitle);
+      weatherObservation.set('title', observationTitle);
+      //weatherObservation.set('conditions', observationTitle);
+      //weatherObservation.set('note', observationTitle);
+      //weatherObservation.set('student_id', observationTitle);
+      weatherObservation.save();
+    });
+
   };
 
   /* ===== Colin ===== */
