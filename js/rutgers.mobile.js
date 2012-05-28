@@ -80,12 +80,17 @@ b.attr('data-icon-pos', 'left');*/
   /* ================= */
 
   /* ===== Armin ===== */
-  var loginSuccess = function(){
-    console.log('Success');
+  var loginSuccess = function(success){
+    account.id = success.account_id;
+    token = success.token;
+    console.log('Success! Account ID: '+account.id+' token: '+token);
+    // go to href="#home"
+    $.mobile.changePage("#home", "");
   };
 
-  var loginError = function(){
-    console.log('Error');
+  var loginError = function(error){
+    var errorString = JSON.stringify(error);
+    console.log('Error '+JSON.stringify(error.responseText));
   };
 
   var login = function(account, successCallback, errorCallback) {
@@ -125,7 +130,7 @@ b.attr('data-icon-pos', 'left');*/
           console.error("Error while making cross-domain request to Rollcall. Is Rollcall configured for CORS?");
         }
         else {
-          console.error("Error response from Rollcall at " + rollcall.url + ":", error);
+          console.error("Error response from Rollcall at " + error.statusText);
         }
 
         if (errorCallback) {
