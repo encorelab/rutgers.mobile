@@ -7,7 +7,7 @@ rutgers = (function() {
   var self = {};
   self.url = 'http://rollcall.badger.encorelab.org';
   var account = {'login':'','password':''};
-  var token = '';
+  self.token = '';
 
   // Colin you can either create a variable with:
   // var assignedTransects (which is within rutgers)
@@ -82,8 +82,8 @@ b.attr('data-icon-pos', 'left');*/
   /* ===== Armin ===== */
   var loginSuccess = function(success){
     account.id = success.account_id;
-    token = success.token;
-    console.log('Success! Account ID: '+account.id+' token: '+token);
+    self.token = success.token;
+    console.log('Success! Account ID: '+account.id+' token: '+self.token);
     // go to href="#home"
     jQuery('#home .username-display').text(account.login);
     jQuery.mobile.changePage("#home", "");
@@ -147,9 +147,6 @@ b.attr('data-icon-pos', 'left');*/
 
 
 /* ================= */
-  // making account and token available outside (via rutgers.token)
-  self.account = account;
-  self.token = token;
   return self;
 })();
 
