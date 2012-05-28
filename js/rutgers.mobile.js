@@ -6,7 +6,7 @@ rutgers = (function() {
   "use strict";
   var self = {};
   self.url = 'http://rollcall.badger.encorelab.org';
-  var account = {};
+  var account = {'login':'','password':''};
   var token = '';
 
   // Colin you can either create a variable with:
