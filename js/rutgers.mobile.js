@@ -99,12 +99,20 @@ rutgers = (function() {
     // .done-button event?
   });
 
+  // 
   $('#plants-observation-category').live('pageinit',function(event) {
     $('#plants-observation-category .plants-button').click(function() {
       $('#plants-subcategory').attr('value', $(this).attr('value'));
+      $('#plants-subcategory').text($(this).attr('value'));
     });
   });
 
+  $('#animals-observation-category').live('pageinit',function(event) {
+    $('#animals-observation-category .animals-button').click(function() {
+      $('#animals-subcategory').attr('value', $(this).attr('value'));
+      $('#animals-subcategory').text($(this).attr('value'));
+    });
+  });
 
 
   $('#add-plant-observation').live('pageinit',function(event) {
@@ -129,7 +137,59 @@ rutgers = (function() {
     });
   });
 
+  $('#add-animal-observation').live('pageinit',function(event) {
+    // clear all fields
+
+    jQuery('#add-animal-observation .submit-button').click(function() {
+      var animalsObservation = new rutgers.model.AnimalsObservation();
+      var observationTitle = jQuery('#animals-title-input').val();
+      var observationSubcategory = jQuery('#animals-subcategory').val();      
+      var observationCount = jQuery('#animals-count-input').val();
+      var observationNote = jQuery('#animals-note-input').val();
+
+      animalsObservation.set('title', observationTitle);
+      animalsObservation.set('subcategory', observationSubcategory);
+      animalsObservation.set('count', observationCount);
+      animalsObservation.set('note', observationNote);
+      animalsObservation.set('transect', $('.location').attr('transect'));
+      animalsObservation.set('plot', $('.location').attr('plot'));
+      animalsObservation.set('student_name', self.user.name);
+      animalsObservation.set('group_name', self.user.group);
+      animalsObservation.save();
+    });
+  });
+
+  $('#add-soil-and-water-observation').live('pageinit',function(event) {
+    // clear all fields
+
+    jQuery('#add-soil-and-water-observation .submit-button').click(function() {
+      var soilWaterObservation = new rutgers.model.SoilWaterObservation();
+      var observationTitle = jQuery('#animals-title-input').val();
+      var obserationColor = jQuery('input:radio[name=color-radios]:checked').val();
+      var observationTexture = jQuery('input:radio[name=texture-radios]:checked').val();
+      var observationOrganics = jQuery('input:radio[name=organics-radios]:checked').val();
+      var observationWater =jQuery('input:radio[name=water-radios]:checked').val();
+      var observationWaterLevel = jQuery('soilwater-water-input').val();
+      var observationNote = jQuery('#animals-note-input').val();
+
+      soilWaterObservation.set('title', observationTitle);
+      soilWaterObservation.set('color', obserationColor);
+      soilWaterObservation.set('texture', observationTexture);
+      soilWaterObservation.set('organics', observationOrganics);
+      soilWaterObservation.set('water', observationWater);
+      soilWaterObservation.set('water_level', observationWaterLevel);
+      soilWaterObservation.set('note', observationNote);
+      soilWaterObservation.set('transect', $('.location').attr('transect'));
+      soilWaterObservation.set('plot', $('.location').attr('plot'));
+      soilWaterObservation.set('student_name', self.user.name);
+      soilWaterObservation.set('group_name', self.user.group);
+      soilWaterObservation.save();
+    });
+  });
+
   $('#add-weather-observation').live('pageinit',function(event) {
+    // clear all fields
+
     jQuery('#add-weather-observation .submit-button').click(function() {
       var weatherObservation = new rutgers.model.WeatherObservation();
       var observationTitle = jQuery('#weather-title-input').val();

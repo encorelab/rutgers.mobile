@@ -324,10 +324,10 @@
                 </div>
                 <div>
                     <p>
-                        <strong id="plants-subcategory">
+                        <strong>
                             Subcategory:&nbsp;
                         </strong>
-                        Phragmites
+                        <span id="plants-subcategory" />
                     </p>
                 </div>
                 <div data-role="fieldcontain">
@@ -361,10 +361,8 @@
                 <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
-                <input type="submit" data-theme="b" value="Submit"/>
+                <a class="submit-button" data-role="button" data-transition="none" href="#plot-overview" data-theme="b">Submit</a>
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                </a>
-                <a class="submit-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">TEST
                 </a>
             </div>
         </div>
@@ -397,6 +395,58 @@
                 </a>
             </div>
         </div>
+        <div data-role="page" id="animals-observation-category">
+            <div data-theme="a" data-role="header">
+                <h3 class="header-title">
+                </h3>
+            </div>
+            <div data-role="content">
+                <div>
+                    <p>
+                        <strong>
+                            Choose a category for your new observation
+                        </strong>
+                    </p>
+                </div>
+                <ul data-role="listview" data-divider-theme="b" data-inset="true">
+                    <li data-role="list-divider" role="heading">
+                        Plants
+                    </li>
+                    <li data-theme="c">
+                        <a class="animals-button" value="Ribbed Muscle" href="#add-animal-observation" data-transition="slide">
+                            Ribbed Muscle
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a class="animals-button" value="Blue Muscle" ref="#add-animal-observation" data-transition="slide">
+                            Blue Muscle
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a class="animals-button" value="Fiddler Crab" href="#add-animal-observation" data-transition="slide">
+                            Fiddler Crab
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a class="animals-button" value="Marsh Snail" href="#add-animal-observation" data-transition="slide">
+                            Marsh Snail
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a class="animals-button" value="Periwinkle" href="#add-animal-observation" data-transition="slide">
+                            Periwinkle
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a class="animals-button" value="Mud Crab" href="#add-animal-observation" data-transition="slide">
+                            Mud Crab
+                        </a>
+                    </li>
+                </ul>
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                </a>
+            </div>
+        </div>        
         <div data-role="page" id="add-animal-observation">
             <div data-theme="a" data-role="header">
                 <h3>
@@ -420,35 +470,35 @@
                     </p>
                 </div>
                 <div>
-                    <p id="animals-subcategory">
+                    <p>
                         <strong>
                             Subcategory:&nbsp;
                         </strong>
-                        Ribbed Muscle
+                        <span id="animals-subcategory" />
                     </p>
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textinput5">
+                        <label for="animals-title-input">
                             Title
                         </label>
-                        <input id="textinput5" placeholder="" value="" type="text" />
+                        <input id="animals-title-input" placeholder="" value="" type="text" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textinput6">
+                        <label for="animals-count-input">
                             Count
                         </label>
-                        <input id="textinput6" placeholder="% of the plot covered " value="" type="number" />
+                        <input id="animals-count-input" placeholder="% of the plot covered " value="" type="number" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textarea2">
+                        <label for="animals-note-input">
                             Note
                         </label>
-                        <textarea id="textarea2" placeholder="">
+                        <textarea id="animals-note-input" placeholder="">
                         </textarea>
                     </fieldset>
                 </div>
@@ -458,128 +508,12 @@
                 <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
-                <input type="submit" data-theme="b" value="Submit" />
+                <a class="submit-button" data-role="button" data-transition="none" href="#plot-overview" data-theme="b">Submit</a>
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
         </div>
-        <div data-role="page" id="animals-observation-category">
-            <div data-theme="a" data-role="header">
-                <h3 class="header-title">
-                </h3>
-            </div>
-            <div data-role="content">
-                <div>
-                    <p>
-                        <strong>
-                            Choose a category for your new observation
-                        </strong>
-                    </p>
-                </div>
-                <ul data-role="listview" data-divider-theme="b" data-inset="true">
-                    <li data-role="list-divider" role="heading">
-                        Plants
-                    </li>
-                    <li data-theme="c">
-                        <a href="#add-animal-observation" data-transition="slide">
-                            Ribbed Muscle
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#add-animal-observation" data-transition="slide">
-                            Blue Muscle
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#add-animal-observation" data-transition="slide">
-                            Fiddler Crab
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#add-animal-observation" data-transition="slide">
-                            Marsh Snail
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#add-animal-observation" data-transition="slide">
-                            Periwinkle
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#add-animal-observation" data-transition="slide">
-                            Mud Crab
-                        </a>
-                    </li>
-                </ul>
-                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                </a>
-            </div>
-        </div>
-        <div data-role="page" id="add-animal-observation">
-            <div data-theme="a" data-role="header">
-                <h3>
-                    Add Observation
-                </h3>
-            </div>
-            <div data-role="content">
-                <div>
-                    <p>
-                        <strong class="location">
-                        </strong>
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        <strong>
-                            Category:
-                        </strong>
-                        Animals
-                    </p>
-                </div>
-                <div>
-                    <p id="subcategory">
-                        <strong>
-                            Subcategory:&nbsp;
-                        </strong>
-                        Mud Crab
-                    </p>
-                </div>
-                <div data-role="fieldcontain">
-                    <fieldset data-role="controlgroup">
-                        <label for="textinput3">
-                            Title
-                        </label>
-                        <input id="textinput3" placeholder="" value="" type="text" />
-                    </fieldset>
-                </div>
-                <div data-role="fieldcontain">
-                    <fieldset data-role="controlgroup">
-                        <label for="textinput4">
-                            Count
-                        </label>
-                        <input id="textinput4" placeholder="# of animals" value="" type="number" />
-                    </fieldset>
-                </div>
-                <div data-role="fieldcontain">
-                    <fieldset data-role="controlgroup">
-                        <label for="textarea1">
-                            Note
-                        </label>
-                        <textarea id="textarea1" placeholder="">
-                        </textarea>
-                    </fieldset>
-                </div>
-                <a data-role="button" data-transition="none" href="#add-plant-observation" data-icon="plus" data-iconpos="left">
-                    Take photo
-                </a>
-                <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
-                    <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
-                </div>
-                <input type="submit" data-theme="b" value="Submit" />
-                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                </a>
-            </div>
-        </div>
+
         <div data-role="page" id="soil-and-water-observation">
             <div data-theme="a" data-role="header">
                 <h3 class="header-title">
@@ -632,10 +566,10 @@
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textinput9">
+                        <label for="soilwater-title-input">
                             Title
                         </label>
-                        <input id="textinput9" placeholder="" value="" type="text" />
+                        <input id="soilwater-title-input" placeholder="" value="" type="text" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
@@ -643,19 +577,19 @@
                         <legend>
                             Soil color
                         </legend>
-                        <input name="radiobuttons1" id="radio1" value="Light brown" type="radio" />
+                        <input name="color-radios" id="radio1" value="Light brown" type="radio" />
                         <label for="radio1">
                             Light brown
                         </label>
-                        <input name="radiobuttons1" id="radio2" value="Brown" type="radio" />
+                        <input name="color-radios" id="radio2" value="Brown" type="radio" />
                         <label for="radio2">
                             Brown
                         </label>
-                        <input name="radiobuttons1" id="radio3" value="Dark brown" type="radio" />
+                        <input name="color-radios" id="radio3" value="Dark brown" type="radio" />
                         <label for="radio3">
                             Dark brown
                         </label>
-                        <input name="radiobuttons1" id="radio4" value="radio4" type="radio" />
+                        <input name="color-radios" id="radio4" value="radio4" type="radio" />
                         <label for="radio4">
                             Black
                         </label>
@@ -666,19 +600,19 @@
                         <legend>
                             Texture
                         </legend>
-                        <input name="radiobuttons2" id="radio5" value="Sandy" type="radio" />
+                        <input name="texture-radios" id="radio5" value="Sandy" type="radio" />
                         <label for="radio5">
                             Sandy
                         </label>
-                        <input name="radiobuttons2" id="radio6" value="Silty" type="radio" />
+                        <input name="texture-radios" id="radio6" value="Silty" type="radio" />
                         <label for="radio6">
                             Silty
                         </label>
-                        <input name="radiobuttons2" id="radio7" value="radio7" type="radio" />
+                        <input name="texture-radios" id="radio7" value="radio7" type="radio" />
                         <label for="radio7">
                             Loamy
                         </label>
-                        <input name="radiobuttons2" id="radio8" value="Clay" type="radio" />
+                        <input name="texture-radios" id="radio8" value="Clay" type="radio" />
                         <label for="radio8">
                             Clay
                         </label>
@@ -689,15 +623,15 @@
                         <legend>
                             Organics
                         </legend>
-                        <input name="radiobuttons3" id="radio9" value="radio1" type="radio" />
+                        <input name="organics-radios" id="radio9" value="radio1" type="radio" />
                         <label for="radio9">
                             Lots of organic matter
                         </label>
-                        <input name="radiobuttons3" id="radio10" value="Some of organic matter" type="radio" />
+                        <input name="organics-radios" id="radio10" value="Some of organic matter" type="radio" />
                         <label for="radio10">
                             Some of organic matter
                         </label>
-                        <input name="radiobuttons3" id="radio11" value="No organic matter" type="radio" />
+                        <input name="organics-radios" id="radio11" value="No organic matter" type="radio" />
                         <label for="radio11">
                             No organic matter
                         </label>
@@ -708,15 +642,15 @@
                         <legend>
                             Water
                         </legend>
-                        <input name="radiobuttons5" id="radio13" value="Dry" type="radio" />
+                        <input name="water-radios" id="radio13" value="Dry" type="radio" />
                         <label for="radio13">
                             Dry
                         </label>
-                        <input name="radiobuttons5" id="radio14" value="Water in holes" type="radio" />
+                        <input name="water-radios" id="radio14" value="Water in holes" type="radio" />
                         <label for="radio14">
                             Water in holes
                         </label>
-                        <input name="radiobuttons5" id="radio15" value="Water on surface" type="radio" />
+                        <input name="water-radios" id="radio15" value="Water on surface" type="radio" />
                         <label for="radio15">
                             Water on surface
                         </label>
@@ -724,18 +658,18 @@
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textinput10">
+                        <label for="soilwater-water-input">
                             Centimeters of water on surface
                         </label>
-                        <input id="textinput10" placeholder="to one decimal place e.g. 1.2 cm" value="" type="text" />
+                        <input id="soilwater-title-input" placeholder="to one decimal place e.g. 1.2 cm" value="" type="text" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textarea4">
+                        <label for="soilwater-note-input">
                             Note
                         </label>
-                        <textarea id="textarea4" placeholder="e.g. How long did you observe?">
+                        <textarea id="soilwater-note-input" placeholder="e.g. How long did you observe?">
                         </textarea>
                     </fieldset>
                 </div>
@@ -745,7 +679,7 @@
                 <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
-                <input type="submit" data-theme="b" value="Submit" />
+                <a class="submit-button" data-role="button" data-transition="none" href="#plot-overview" data-theme="b">Submit</a>
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
@@ -861,7 +795,7 @@
                 <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
-                <input class="submit-button" type="submit" data-theme="b" value="Submit" />
+                <a class="submit-button" data-role="button" data-transition="none" href="#plot-overview" data-theme="b">Submit</a>
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
