@@ -37,22 +37,19 @@ rutgers = (function() {
       login(account, loginSuccess, loginError);
     });
 
-    // submit button to store weather observation - moved to weather page init
-/*    jQuery('#add-weather-observation .submit-button').click(function() {
-      var weatherObservation = new rutgers.model.WeatherObservation();
-      var observationTitle = jQuery('#weather-observation-title').val();
-      var observationNote = jQuery('#weather-observation-note').val();
-      console.log('Submitted weather observation. Title: '+observationTitle);
-      weatherObservation.set('title', observationTitle);
-      //weatherObservation.set('conditions', observationTitle);
-      weatherObservation.set('note', observationNote);
-      //weatherObservation.set('student_id', observationTitle);
-      weatherObservation.save();
-    });*/
-
   };
 
   /* ===== Colin ===== */
+
+  /* ============================== HELPER FUNCTIONS ======================================= */
+
+  self.clearInputs = function(page) {
+    $('.clearable').val('');
+    $('#' + page + ' input[type=checkbox]').attr('checked',false);
+    $('#' + page + ' input[type=checkbox]').checkboxradio("refresh");
+    $('#' + page + ' input[type=radio]').attr('checked',false);
+    $('#' + page + ' input[type=radio]').checkboxradio("refresh");
+  };
 
   /* =============== PAGE INITS ================ */
 
@@ -134,6 +131,8 @@ rutgers = (function() {
       plantsObservation.set('student_name', self.user.name);
       plantsObservation.set('group_name', self.user.group);
       plantsObservation.save();
+
+      self.clearInputs('add-plant-observation');
     });
   });
 
@@ -156,6 +155,8 @@ rutgers = (function() {
       animalsObservation.set('student_name', self.user.name);
       animalsObservation.set('group_name', self.user.group);
       animalsObservation.save();
+
+      self.clearInputs('add-animal-observation');
     });
   });
 
@@ -184,12 +185,12 @@ rutgers = (function() {
       soilWaterObservation.set('student_name', self.user.name);
       soilWaterObservation.set('group_name', self.user.group);
       soilWaterObservation.save();
+
+      self.clearInputs('add-soil-and-water-observation');
     });
   });
 
   $('#add-weather-observation').live('pageinit',function(event) {
-    // clear all fields
-
     jQuery('#add-weather-observation .submit-button').click(function() {
       var weatherObservation = new rutgers.model.WeatherObservation();
       var observationTitle = jQuery('#weather-title-input').val();
@@ -209,6 +210,8 @@ rutgers = (function() {
       weatherObservation.set('student_name', self.user.name);
       weatherObservation.set('group_name', self.user.group);
       weatherObservation.save();
+
+      self.clearInputs('add-weather-observation');
     });
   });  
 
