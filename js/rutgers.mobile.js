@@ -15,10 +15,8 @@ rutgers = (function() {
   };
   self.transectsAssigned = [];
   self.plotsCompleted = {};
-  // self.currentTransect;
-  // self.currentPlot;
-  // self.currentCategory;
-  // self.currentSubcategory;
+
+  //var CURRENT_DB = "http://rollcall.badger.encorelab.org";
 
   self.init = function() {
     console.log('Initializing...');
@@ -36,7 +34,6 @@ rutgers = (function() {
       account.password = jQuery('#password').val();
       login(account, loginSuccess, loginError);
     });
-
   };
 
   /* ===== Colin ===== */
@@ -53,7 +50,8 @@ rutgers = (function() {
 
   /* =============== PAGE INITS ================ */
 
-  $('#home').live('pageinit', function(event) {
+  $('#home').live('pagebeforeshow', function(event) {
+
     // assign transects, add the class, add text to the accordions
     $('#home .first-transect-group').addClass('transect-' + self.transectsAssigned[0]);
     $('#home .first-transect-group').attr('value', self.transectsAssigned[0]);
@@ -62,6 +60,8 @@ rutgers = (function() {
     $('#home .second-transect-group').attr('value', self.transectsAssigned[1]);
     $('#home.accordion-header').text('Transect ' + self.transectsAssigned[1]);      // TODO add [done] or [not done] here
 
+
+    
 /*    _.map(self.plotsCompleted, function (value, key) {
       //return key (2,3) value(arr,arr)
       console.log($('.transect-' + key + ' .plot-' + '1'));
@@ -82,29 +82,39 @@ rutgers = (function() {
     _.values(self.plotsCompleted[3]);*/
 
     // do we need .die()s before each of these, since we'll be returning to this page over and over?
+    // when a button is clicked, add the relevent plot and transect to headers etc on all subsequent pages
     $('.plot-button').click(function(){
-      $('.header-title').text("Plot " + $(this).attr('value'));   // I know this is a set of buttons... how can I grab the one clicked on? TODO HELP
+      $('.header-title').text("Plot " + $(this).attr('value'));
       $('.back-button').text("Back to Plot " + $(this).attr('value'));
       $('.location').text("Transect " + $(this).parent().parent().attr('value') + ", Plot " + $(this).attr('value'));
       $('.location').attr('transect', $(this).parent().parent().attr('value'));
       $('.location').attr('plot', $(this).attr('value'));
     });
 
+  /* ======================================================================================== */
+
+
+
+
+  /* ======================================================================================== */
+
+
   });
 
-  $('#plot-overview').live('pageinit',function(event) {
+  $('#plot-overview').live('pagebeforeshow',function(event) {
     // .done-button event?
   });
 
-  // 
-  $('#plants-observation-category').live('pageinit',function(event) {
+  // what a plant button is clicked, add the value (plant name) to the plants subcat on plants-observation-category
+  $('#plants-observation-category').live('pagebeforeshow',function(event) {
     $('#plants-observation-category .plants-button').click(function() {
       $('#plants-subcategory').attr('value', $(this).attr('value'));
       $('#plants-subcategory').text($(this).attr('value'));
     });
   });
 
-  $('#animals-observation-category').live('pageinit',function(event) {
+// what an animal button is clicked, add the value (animal name) to the animal subcat on animal-observation-category
+  $('#animals-observation-category').live('pagebeforeshow',function(event) {
     $('#animals-observation-category .animals-button').click(function() {
       $('#animals-subcategory').attr('value', $(this).attr('value'));
       $('#animals-subcategory').text($(this).attr('value'));
@@ -112,9 +122,9 @@ rutgers = (function() {
   });
 
 
-  $('#add-plant-observation').live('pageinit',function(event) {
-    // clear all fields
+  $('#add-plant-observation').live('pagebeforeshow',function(event) {
 
+    // get form data and submit to DB
     jQuery('#add-plant-observation .submit-button').click(function() {
       var plantsObservation = new rutgers.model.PlantsObservation();
       var observationTitle = jQuery('#plants-title-input').val();
@@ -136,9 +146,9 @@ rutgers = (function() {
     });
   });
 
-  $('#add-animal-observation').live('pageinit',function(event) {
-    // clear all fields
-
+  $('#add-animal-observation').live('pagebeforeshow',function(event) {
+    
+    // get form data and submit to DB
     jQuery('#add-animal-observation .submit-button').click(function() {
       var animalsObservation = new rutgers.model.AnimalsObservation();
       var observationTitle = jQuery('#animals-title-input').val();
@@ -160,9 +170,9 @@ rutgers = (function() {
     });
   });
 
-  $('#add-soil-and-water-observation').live('pageinit',function(event) {
-    // clear all fields
+  $('#add-soil-and-water-observation').live('pagebeforeshow',function(event) {
 
+    // get form data and submit to DB
     jQuery('#add-soil-and-water-observation .submit-button').click(function() {
       var soilWaterObservation = new rutgers.model.SoilWaterObservation();
       var observationTitle = jQuery('#soilwater-title-input').val();
@@ -190,7 +200,33 @@ rutgers = (function() {
     });
   });
 
-  $('#add-weather-observation').live('pageinit',function(event) {
+  $('#weather-observation').live('pagebeforeshow',function(event) {
+
+
+    var htmlOutput = '<li data-role="list-divider" role="heading">Weather Observations</li>';
+    var weatherObsCollection = new rutgers.model.WeatherObservations();
+    weatherObsCollection.on('reset', function(collection) {
+      collection.each(function(obs) {
+        if (obs.get('student_name') === self.user.name) {
+          console.log('my obs conditions: ' + obs.get('conditions'));
+          htmlOutput += '<li data-theme="c"><a href="#page1" data-transition="slide">';    // TODO fix href
+          htmlOutput += obs.get('title');
+          htmlOutput += "</a></li>";
+        } else {
+          console.log('other guy: ' + obs.get('student_name'));
+        }
+      });
+      htmlOutput += "</ul>";
+      $('#weather-observation .header').html(htmlOutput).listview("refresh");
+    });
+    weatherObsCollection.fetch();
+
+  });
+
+
+  $('#add-weather-observation').live('pagebeforeshow',function(event) {
+
+    // get form data and submit to DB    
     jQuery('#add-weather-observation .submit-button').click(function() {
       var weatherObservation = new rutgers.model.WeatherObservation();
       var observationTitle = jQuery('#weather-title-input').val();
@@ -229,19 +265,27 @@ rutgers = (function() {
     // which plots have been completed - set button data-icons
     // if (no plots completed) do x, else restoreState();
 
-    // do a rollcall call to check the following:
-    // which transects have been assigned - 
-
     // dummy data:
-    self.transectsAssigned = [2,3];
+    // self.transectsAssigned = [2,3];
     self.plotsCompleted = {2:[1],3:[1,2,3,4,5]};
 
-    self.user.name = account.login;
-    self.user.group = "some group";     // TODO
+    $.ajax("http://rollcall.badger.encorelab.org/users/"+ account.login +".json", {
+      type: 'get',
+      success: function (data) {
+        // name does not come from Rollcall
+        self.user.name = account.login;
+        console.log('name: '+ account.login);        
+        self.user.group = data.groups[0].name;
+        console.log('group: '+ self.user.group);
+        self.transectsAssigned = JSON.parse(data.groups[0].metadata.transects);
+        console.log('transects: '+ self.transectsAssigned);
 
-    // go to href="#home"
-    jQuery('#home .username-display').text(account.login);
-    jQuery.mobile.changePage("#home");
+        // go to href="#home"
+        jQuery('#home .username-display').text(account.login);
+        jQuery.mobile.changePage("#home");        
+      },
+      dataType: 'json'
+    });
   };
 
   var loginError = function(error){
