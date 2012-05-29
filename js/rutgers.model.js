@@ -181,14 +181,14 @@
     /*** SoilWaterObservation ***/
 
   model.SoilWaterObservation = Observation.extend({
-    singular: "soilwater_observation",
-    plural: "soilwater_observations",
+    singular: "soil_water_observation",
+    plural: "soil_water_observations",
     nested: [], /* don't need this for now but leaving it in case we need it later */
   });
 
   model.SoilWaterObservations = Backbone.Collection.extend({
       model: model.SoilWaterObservation,
-      url: model.baseURL + '/soilwater_observations.json'
+      url: model.baseURL + '/soil_water_observations.json'
   });
 
   /*** WeatherObservation ***/
