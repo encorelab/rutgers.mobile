@@ -75,43 +75,43 @@
                     </p>
                 </div>
                 <div data-role="collapsible-set" data-theme="" data-content-theme="">
-                    <div class="first-transect-group" data-role="collapsible" data-collapsed="false">             <!-- TODO -->
+                    <div class="first-transect-group" data-role="collapsible" data-collapsed="false">
                         <h3 class="accordion-header">
                             Transect 2 [not done]
                         </h3>
-                        <a class="plot-1" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
+                        <a class="plot-1 plot-button" value="1" data-role="button" data-transition="none" href="#plot-overview">
                             Plot 1
                         </a>
-                        <a class="plot-2" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
+                        <a class="plot-2 plot-button" value="2" data-role="button" data-transition="none" href="#plot-overview">
                             Plot 2
                         </a>
-                        <a class="plot-3" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
+                        <a class="plot-3 plot-button" value="3" data-role="button" data-transition="none" href="#plot-overview">
                             Plot 3
                         </a>
-                        <a class="plot-4" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
+                        <a class="plot-4 plot-button" value="4" data-role="button" data-transition="none" href="#plot-overview">
                             Plot 4
                         </a>
-                        <a class="plot-5" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-r" data-iconpos="right">
+                        <a class="plot-5 plot-button" value="5" data-role="button" data-transition="none" href="#plot-overview">
                             Plot 5
                         </a>
                     </div>
-                    <div class="second-transect-set" data-role="collapsible" data-collapsed="false">
+                    <div class="second-transect-group" data-role="collapsible" data-collapsed="false">
                         <h3 class="accordion-header">
                             Transect 3 [done]
                         </h3>
-                        <a class="plot-1" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-1 plot-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                             Plot 1
                         </a>
-                        <a class="plot-2" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-2 plot-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                             Plot 2
                         </a>
-                        <a class="plot-3" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-3 plot-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                             Plot 3
                         </a>
-                        <a class="plot-4" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-4 plot-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                             Plot 4
                         </a>
-                        <a class="plot-5" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                        <a class="plot-5 plot-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                             Plot 5
                         </a>
                     </div>
@@ -120,8 +120,7 @@
         </div>
         <div data-role="page" id="plot-overview">
             <div data-theme="a" data-role="header">
-                <h3>
-                    Plot 2
+                <h3 class="header-title">
                 </h3>
             </div>
             <div data-role="content">
@@ -135,13 +134,13 @@
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
                         <div>
-                            <a data-role="button" data-transition="none" href="#plants-observation">
+                            <a data-role="button" data-transition="none" href="#plants-observation" value="Plants">
                                 <p style="text-align: center; " data-mce-style="text-align: center;">
                                     <strong>
                                         <img src="assets/plant.png" data-mce-src="assets/plant.png" width="64" height="64" />
                                     </strong>
                                 </p>
-                                <p style="text-align: center; " data-mce-style="text-align: center;">
+                                <p style="text-align: center;" data-mce-style="text-align: center;">
                                     <strong>
                                         Plants
                                     </strong>
@@ -152,14 +151,14 @@
                     <div class="ui-block-b">
                         <div>
                             <a data-role="button" data-transition="none" href="#animals-observation">
-                                <p style="text-align: center; ">
+                                <p style="text-align: center;">
                                     <strong>
                                     </strong>
                                     <strong>
                                         <img src="assets/animal.png" alt="" width="64" height="64" data-mce-src="assets/animal.png" />
                                     </strong>
                                 </p>
-                                <p style="text-align: center; ">
+                                <p style="text-align: center;">
                                     <strong>
                                         Animals
                                     </strong>
@@ -177,7 +176,7 @@
                                         <img src="assets/soil.png" alt="" width="64" height="64" data-mce-src="assets/soil.png" />
                                     </strong>
                                 </p>
-                                <p style="text-align: center; " data-mce-style="text-align: center;">
+                                <p style="text-align: center;" data-mce-style="text-align: center;">
                                     <strong>
                                         Soil/Water
                                     </strong>
@@ -213,7 +212,7 @@
                         </strong>
                     </p>
                 </div>
-                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
+                <a class="done-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="check" data-iconpos="left">
                     Done
                 </a>
                 <a data-role="button" data-transition="none" href="#home" data-icon="arrow-l" data-iconpos="left">
@@ -225,8 +224,7 @@
         </div>
         <div data-role="page" id="plants-observation">
             <div data-theme="a" data-role="header">
-                <h3>
-                    Plot 2
+                <h3 class="header-title">
                 </h3>
             </div>
             <div data-role="content">
@@ -251,15 +249,13 @@
 <!--                 <a data-role="button" data-transition="none" data-theme="e" href="#plants-observation-category" data-icon="plus" data-iconpos="left">
                     Edit previous observation
                 </a>  NEED THE EDIT BUTTON, BUT UNCLEAR FROM THE MOCKUP WHERE IT IS REQUIRED -->              
-                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-l" data-iconpos="left">
-                    Back to Plot <span class="back-button">2</span>                  <!-- TODO add dynamic button text, linking -->
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-l" data-iconpos="left">
                 </a>
             </div>
         </div>
         <div data-role="page" id="plants-observation-category">
             <div data-theme="a" data-role="header">
-                <h3>
-                    Plot 2
+                <h3 class="header-title">
                 </h3>
             </div>
             <div data-role="content">
@@ -275,27 +271,27 @@
                         Plants
                     </li>
                     <li data-theme="c">
-                        <a href="#add-plant-observation" data-transition="slide">
+                        <a class="plants-button" value="Phragmites" href="#add-plant-observation" data-transition="slide">
                             Phragmites
                         </a>
                     </li>
                     <li data-theme="c">
-                        <a href="#add-plant-observation" data-transition="slide">
+                        <a class="plants-button" value="Salt Marsh Chord Grass" href="#add-plant-observation" data-transition="slide">
                             Salt Marsh Chord Grass
                         </a>
                     </li>
                     <li data-theme="c">
-                        <a href="#add-plant-observation" data-transition="slide">
+                        <a class="plants-button" value="Salt Hay" href="#add-plant-observation" data-transition="slide">
                             Salt Hay
                         </a>
                     </li>
                     <li data-theme="c">
-                        <a href="#add-plant-observation" data-transition="slide">
+                        <a class="plants-button" value="Pickle Weed" href="#add-plant-observation" data-transition="slide">
                             Pickle Weed
                         </a>
                     </li>
                     <li data-theme="c">
-                        <a href="#add-plant-observation" data-transition="slide">
+                        <a class="plants-button" value="Salt Grass" href="#add-plant-observation" data-transition="slide">
                             Salt Grass
                         </a>
                     </li>
@@ -314,8 +310,7 @@
             <div data-role="content">
                 <div>
                     <p>
-                        <strong>
-                            Transect&nbsp;2, Plot 2
+                        <strong class="location">
                         </strong>
                     </p>
                 </div>
@@ -329,7 +324,7 @@
                 </div>
                 <div>
                     <p>
-                        <strong>
+                        <strong id="plants-subcategory">
                             Subcategory:&nbsp;
                         </strong>
                         Phragmites
@@ -337,26 +332,26 @@
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textinput3">
+                        <label for="plants-title-input">
                             Title
                         </label>
-                        <input id="textinput3" placeholder="" value="" type="text" />
+                        <input id="plants-title-input" placeholder="" value="" type="text" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textinput4">
+                        <label for="plants-surface-input">
                             Surface cover (%)
                         </label>
-                        <input id="textinput4" placeholder="% of the plot covered " value="" type="number" />
+                        <input id="plants-surface-input" placeholder="% of the plot covered " value="" type="number" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="textarea1">
+                        <label for="plants-note-input">
                             Note
                         </label>
-                        <textarea id="textarea1" placeholder="">
+                        <textarea id="plants-note-input" placeholder="">
                         </textarea>
                     </fieldset>
                 </div>
@@ -366,16 +361,16 @@
                 <div style="width: 100%; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
-                <input type="submit" data-theme="b" value="Submit" />
-                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
+                <input type="submit" data-theme="b" value="Submit"/>
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                </a>
+                <a class="submit-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">TEST
                 </a>
             </div>
         </div>
         <div data-role="page" id="animals-observation">
             <div data-theme="a" data-role="header">
-                <h3>
-                    Plot 2
+                <h3 class="header-title">
                 </h3>
             </div>
             <div data-role="content">
@@ -411,8 +406,7 @@
             <div data-role="content">
                 <div>
                     <p>
-                        <strong>
-                            Transect&nbsp;2, Plot 2
+                        <strong class="location">
                         </strong>
                     </p>
                 </div>
@@ -426,7 +420,7 @@
                     </p>
                 </div>
                 <div>
-                    <p>
+                    <p id="animals-subcategory">
                         <strong>
                             Subcategory:&nbsp;
                         </strong>
@@ -465,15 +459,13 @@
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
                 <input type="submit" data-theme="b" value="Submit" />
-                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
         </div>
         <div data-role="page" id="animals-observation-category">
             <div data-theme="a" data-role="header">
-                <h3>
-                    Plot 2
+                <h3 class="header-title">
                 </h3>
             </div>
             <div data-role="content">
@@ -519,8 +511,7 @@
                         </a>
                     </li>
                 </ul>
-                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
         </div>
@@ -533,8 +524,7 @@
             <div data-role="content">
                 <div>
                     <p>
-                        <strong>
-                            Transect&nbsp;2, Plot 2
+                        <strong class="location">
                         </strong>
                     </p>
                 </div>
@@ -547,7 +537,7 @@
                     </p>
                 </div>
                 <div>
-                    <p>
+                    <p id="subcategory">
                         <strong>
                             Subcategory:&nbsp;
                         </strong>
@@ -586,15 +576,13 @@
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
                 <input type="submit" data-theme="b" value="Submit" />
-                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
         </div>
         <div data-role="page" id="soil-and-water-observation">
             <div data-theme="a" data-role="header">
-                <h3>
-                    Plot 2
+                <h3 class="header-title">
                 </h3>
             </div>
             <div data-role="content">
@@ -616,8 +604,7 @@
                 <a data-role="button" data-transition="none" data-theme="e" href="#add-soil-and-water-observation" data-icon="plus" data-iconpos="left">
                     Add new observation
                 </a>
-                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
         </div>
@@ -630,8 +617,7 @@
             <div data-role="content">
                 <div>
                     <p>
-                        <strong>
-                            Transect&nbsp;2, Plot 2
+                        <strong class="location">
                         </strong>
                     </p>
                 </div>
@@ -760,15 +746,13 @@
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
                 <input type="submit" data-theme="b" value="Submit" />
-                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
         </div>
         <div data-role="page" id="weather-observation">
             <div data-theme="a" data-role="header">
-                <h3>
-                    Plot 2
+                <h3 class="header-title">
                 </h3>
             </div>
             <div data-role="content">
@@ -790,8 +774,7 @@
                 <a data-role="button" data-transition="none" data-theme="e" href="#add-weather-observation" data-icon="plus" data-iconpos="left">
                     Add new observation
                 </a>
-                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
         </div>
@@ -804,8 +787,7 @@
             <div data-role="content">
                 <div>
                     <p>
-                        <strong>
-                            Transect&nbsp;2, Plot 2
+                        <strong class="location">
                         </strong>
                     </p>
                 </div>
@@ -820,10 +802,10 @@
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="weather-observation-title">
+                        <label for="weather-title-input">
                             Title
                         </label>
-                        <input id="weather-observation-title" placeholder="" value="" type="text" />
+                        <input id="weather-title-input" placeholder="" value="" type="text" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
@@ -831,35 +813,35 @@
                         <legend>
                             Choose:
                         </legend>
-                        <input name="checkbox1" id="checkbox1" type="checkbox" />
+                        <input name="checkbox1" id="checkbox1" type="checkbox" value="Sunny"/>
                         <label for="checkbox1">
                             Sunny
                         </label>
-                        <input name="checkbox3" id="checkbox3" type="checkbox" />
-                        <label for="checkbox3">
+                        <input name="checkbox2" id="checkbox2" type="checkbox" value="Partly cloudy"/>
+                        <label for="checkbox2">
                             Partly cloudy
                         </label>
-                        <input name="checkbox2" id="checkbox2" type="checkbox" />
-                        <label for="checkbox2">
+                        <input name="checkbox3" id="checkbox3" type="checkbox" value="Cloudy"/>
+                        <label for="checkbox3">
                             Cloudy
                         </label>
-                        <input name="checkbox4" id="checkbox4" type="checkbox" />
+                        <input name="checkbox4" id="checkbox4" type="checkbox" value="Rainy"/>
                         <label for="checkbox4">
                             Rainy
                         </label>
-                        <input name="checkbox5" id="checkbox5" type="checkbox" />
+                        <input name="checkbox5" id="checkbox5" type="checkbox" value="Windy"/>
                         <label for="checkbox5">
                             Windy
                         </label>
-                        <input name="checkbox6" id="checkbox6" type="checkbox" />
+                        <input name="checkbox6" id="checkbox6" type="checkbox" value="Cold"/>
                         <label for="checkbox6">
                             Cold
                         </label>
-                        <input name="checkbox7" id="checkbox7" type="checkbox" />
+                        <input name="checkbox7" id="checkbox7" type="checkbox" value="Warm"/>
                         <label for="checkbox7">
                             Warm
                         </label>
-                        <input name="checkbox8" id="checkbox8" type="checkbox" />
+                        <input name="checkbox8" id="checkbox8" type="checkbox" value="Hot"/>
                         <label for="checkbox8">
                             Hot
                         </label>
@@ -867,10 +849,10 @@
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="weather-observation-note">
+                        <label for="weather-note-input">
                             Note
                         </label>
-                        <textarea id="weather-observation-note" placeholder="e.g. How long did you observe?"></textarea>
+                        <textarea id="weather-note-input" placeholder="e.g. How long did you observe?"></textarea>
                     </fieldset>
                 </div>
                 <a data-role="button" data-transition="none" href="#page8" data-icon="plus" data-iconpos="left">
@@ -880,8 +862,7 @@
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
                 <input class="submit-button" type="submit" data-theme="b" value="Submit" />
-                <a data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
-                    Back to Plot <span class="back-button">2</span>          <!-- TODO add dynamic button text -->
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
         </div>

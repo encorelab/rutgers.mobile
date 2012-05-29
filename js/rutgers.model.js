@@ -152,6 +152,45 @@
     }
   });
 
+    /*** AnimalsObservation ***/
+
+  model.AnimalsObservation = Observation.extend({
+    singular: "animals_observation",
+    plural: "animals_observations",
+    nested: [], /* don't need this for now but leaving it in case we need it later */
+  });
+
+  model.AnimalsObservations = Backbone.Collection.extend({
+      model: model.AnimalsObservation,
+      url: model.baseURL + '/animals_observations.json'
+  });  
+
+    /*** PlantsObservation ***/
+
+  model.PlantsObservation = Observation.extend({
+    singular: "plants_observation",
+    plural: "plants_observations",
+    nested: [], /* don't need this for now but leaving it in case we need it later */
+  });
+
+  model.PlantsObservations = Backbone.Collection.extend({
+      model: model.PlantsObservation,
+      url: model.baseURL + '/plants_observations.json'
+  });
+
+    /*** SoilWaterObservation ***/
+
+  model.SoilWaterObservation = Observation.extend({
+    singular: "soilwater_observation",
+    plural: "soilwater_observations",
+    nested: [], /* don't need this for now but leaving it in case we need it later */
+  });
+
+  model.SoilWaterObservations = Backbone.Collection.extend({
+      model: model.SoilWaterObservation,
+      url: model.baseURL + '/soilwater_observations.json'
+  });
+
   /*** WeatherObservation ***/
 
   model.WeatherObservation = Observation.extend({
@@ -163,7 +202,7 @@
   model.WeatherObservations = Backbone.Collection.extend({
       model: model.WeatherObservation,
       url: model.baseURL + '/weather_observations.json'
-  });
-
+  });  
+ 
   rutgers.model = model;
 })(window.rutgers);
