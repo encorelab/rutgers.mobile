@@ -4,8 +4,8 @@
 (function(rutgers) {
   var model = {};
 
-  //model.baseURL = "http://backend.rutgers.badger.encorelab.org";
-  model.baseURL = "http://localhost:3000";
+  model.baseURL = "http://backend.rutgers.badger.encorelab.org";
+  //model.baseURL = "http://localhost:3000";
 
   jQuery.support.cors = true; // enable cross-domain AJAX requests
 
