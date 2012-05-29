@@ -165,13 +165,13 @@ rutgers = (function() {
 
     jQuery('#add-soil-and-water-observation .submit-button').click(function() {
       var soilWaterObservation = new rutgers.model.SoilWaterObservation();
-      var observationTitle = jQuery('#animals-title-input').val();
+      var observationTitle = jQuery('#soilwater-title-input').val();
       var obserationColor = jQuery('input:radio[name=color-radios]:checked').val();
       var observationTexture = jQuery('input:radio[name=texture-radios]:checked').val();
       var observationOrganics = jQuery('input:radio[name=organics-radios]:checked').val();
       var observationWater =jQuery('input:radio[name=water-radios]:checked').val();
       var observationWaterLevel = jQuery('soilwater-water-input').val();
-      var observationNote = jQuery('#animals-note-input').val();
+      var observationNote = jQuery('#soilwater-note-input').val();
 
       soilWaterObservation.set('title', observationTitle);
       soilWaterObservation.set('color', obserationColor);
