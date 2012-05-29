@@ -37,6 +37,39 @@ rutgers = (function() {
       login(account, loginSuccess, loginError);
     });
 
+    // FIXME: hacky... needs to be here for proper phongep init :(
+    document.addEventListener('deviceready', function() {
+      console.log("DEVICE READY!!!!");
+      jQuery(document).delegate('.acquire-photo', 'click', function() {
+        var photo = new rutgers.model.Observation();
+        var of = jQuery(this).data('photo-of');
+        
+        var captureSuccess = function () {
+          console.log("Acquired photo of '"+of+'".');
+          photo.save();
+
+          //veos.reportForm.photos[of].push(photo);
+          photo.upload();
+          //veos.reportForm.renderPhotos();
+        };
+
+        photo.on('image_capture', captureSuccess, photo);
+        
+        switch (jQuery(this).data('acquire-from')) {
+          case 'camera':
+            alert("camera capture");
+            photo.captureFromCamera();
+            break;
+          case 'gallery':
+            alert("gallery capture");
+            photo.captureFromGallery();
+            break;
+          default:
+            console.error("'"+jQuery(this).data('acquire-from')+"' is not a valid source for acquiring a photo.");
+        }
+      });
+    });
+
   };
 
   /* ===== Colin ===== */

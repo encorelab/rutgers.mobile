@@ -112,6 +112,7 @@
         },
         function (error) {
           console.error("Image capture failed: " + error);
+          alert("Image capture failed: " + error);
           obs.trigger('image_capture_error', error);
         },
         options
@@ -202,7 +203,8 @@
   model.WeatherObservations = Backbone.Collection.extend({
       model: model.WeatherObservation,
       url: model.baseURL + '/weather_observations.json'
-  });  
- 
+  });
+
+  model.Observation = Observation;
   rutgers.model = model;
 })(window.rutgers);
