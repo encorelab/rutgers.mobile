@@ -3,6 +3,11 @@
 var rutgers = window.rutgers || {};
 
 rutgers = (function() {
+
+  $(document).bind('mobileinit', function () {
+      jQuery.mobile.pushStateEnabled = false;
+  });
+
   "use strict";
   var self = {};
   self.url = 'http://rollcall.badger.encorelab.org';
