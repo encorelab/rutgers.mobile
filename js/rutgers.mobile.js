@@ -3,13 +3,14 @@
 var rutgers = window.rutgers || {};
 
 rutgers = (function() {
+  "use strict";
 
   // our attempt to deal with the jquery doublebinding issue
   $(document).bind('mobileinit', function () {
       jQuery.mobile.pushStateEnabled = false;
   });
 
-  "use strict";
+  
   var self = {};
   self.url = 'http://rollcall.badger.encorelab.org';
   self.photoURL = 'http://backend.rutgers.badger.encorelab.org/';
@@ -370,6 +371,9 @@ rutgers = (function() {
       jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
     });
 
+    // trying to avoid multiple eventhandler bindings 
+    jQuery("#add-plant-observation .submit-button").unbind();
+
     // get form data and submit to DB
     jQuery('#add-plant-observation .submit-button').click(function() {
       // jQuery('#add-plant-observation .observation-field').each(function () { 
@@ -412,6 +416,9 @@ rutgers = (function() {
     jQuery("#add-animal-observation .acquire-photo").click(function() {
       jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
     });
+
+    // trying to avoid multiple eventhandler bindings 
+    jQuery("#add-animal-observation").unbind();
     
     // get form data and submit to DB
     jQuery('#add-animal-observation .submit-button').click(function() {
@@ -444,13 +451,17 @@ rutgers = (function() {
     console.log('SoilWaterObservation model created');
 
     // trying to avoid multiple eventhandler bindings 
-    //jQuery("#add-soil-and-water-observation .acquire-photo").unbind();
+    jQuery("#add-soil-and-water-observation .acquire-photo").unbind();
 
-    if ( jQuery("#add-soil-and-water-observation .acquire-photo").data('events').click === undefined ) {
+    // if ( jQuery("#add-soil-and-water-observation .acquire-photo").data('events') === undefined ||
+    //      jQuery("#add-soil-and-water-observation .acquire-photo").data('events').click === undefined ) {
       jQuery("#add-soil-and-water-observation .acquire-photo").click(function() {
         jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
       });
-    }
+    // }
+
+    // trying to avoid multiple eventhandler bindings 
+    jQuery("#add-soil-and-water-observation .submit-button").unbind();
 
     // get form data and submit to DB
     jQuery('#add-soil-and-water-observation .submit-button').click(function() {
@@ -495,6 +506,9 @@ rutgers = (function() {
     jQuery("#add-weather-observation .acquire-photo").click(function() {
       jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
     });
+
+    // trying to avoid multiple eventhandler bindings 
+    jQuery("#add-weather-observation .submit-button").unbind();
 
     // get form data and submit to DB    
     jQuery('#add-weather-observation .submit-button').click(function() {
