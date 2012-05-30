@@ -167,6 +167,90 @@ rutgers = (function() {
 
 /* =============== LIST ================ */
 
+  $('#plants-observation').live('pagebeforeshow',function(event) {
+
+    // create the list of group observations
+    var htmlOutput = '<li data-role="list-divider" role="heading">Plant Observations</li>';
+    var plantsObsCollection = new rutgers.model.PlantsObservations();
+    plantsObsCollection.on('reset', function(collection) {
+   
+      // create the HTML for the list of plants observations for this group, transect, plot
+      collection.each(function(obs) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
+          htmlOutput += '<li data-theme="c"><a href="#edit-plants-observation" data-transition="slide" class="plants-observation-';
+          htmlOutput += obs.get('id');
+          htmlOutput += '">';
+          htmlOutput += obs.get('title');
+          htmlOutput += "</a></li>";
+        } else {
+          console.log('observation from other group - group ' + obs.get('group_name'));
+        }
+      });
+      $('#plants-observation .header').html(htmlOutput).listview("refresh");
+
+      // create the event listeners for the list of observations - must be done in a separate each loop from creating the html
+      // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
+      collection.each(function(obs) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+          $('#plants-observation .plants-observation-'+obs.get('id')).click(function () {
+            $('#edit-plants-observation .title').text(obs.get('title'));
+            $('#edit-plants-observation .subcategory').text('subcategory');
+            $('#edit-plants-observation .surface-cover').text(obs.get('surface_cover'));
+            $('#edit-plants-observation .note').text(obs.get('note'));
+            $('#edit-plants-observation .student-name').text(obs.get('student_name'));
+          });
+        } else {
+          console.log('not adding listener, other group');
+        }
+      });
+    });
+    // trigger a reset
+    plantsObsCollection.fetch();
+  });
+
+
+  $('#animals-observation').live('pagebeforeshow',function(event) {
+
+    // create the list of group observations
+    var htmlOutput = '<li data-role="list-divider" role="heading">Animal Observations</li>';
+    var animalsObsCollection = new rutgers.model.AnimalsObservations();
+    animalsObsCollection.on('reset', function(collection) {
+   
+      // create the HTML for the list of animals observations for this group, transect, plot
+      collection.each(function(obs) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
+          htmlOutput += '<li data-theme="c"><a href="#edit-animals-observation" data-transition="slide" class="animals-observation-';
+          htmlOutput += obs.get('id');
+          htmlOutput += '">';
+          htmlOutput += obs.get('title');
+          htmlOutput += "</a></li>";
+        } else {
+          console.log('observation from other group - group ' + obs.get('group_name'));
+        }
+      });
+      $('#animals-observation .header').html(htmlOutput).listview("refresh");
+
+      // create the event listeners for the list of animals observations - must be done in a separate each loop from creating the html
+      // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
+      collection.each(function(obs) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+          $('#animals-observation .animals-observation-'+obs.get('id')).click(function () {
+            $('#edit-animals-observation .title').text(obs.get('title'));
+            $('#edit-animals-observation .subcategory').text(obs.get('subcategory'));
+            $('#edit-animals-observation .count').text(obs.get('note'));
+            $('#edit-animals-observation .note').text(obs.get('count'));
+            $('#edit-animals-observation .student-name').text(obs.get('student_name'));
+          });
+        } else {
+          console.log('not adding listener, other group');
+        }
+      });
+    });
+    // trigger a reset of the weatherObsCollection
+    animalsObsCollection.fetch();
+  });
+
+
   $('#soil-and-water-observation').live('pagebeforeshow',function(event) {
 
     // create the list of group observations
@@ -211,6 +295,7 @@ rutgers = (function() {
     soilWaterObsCollection.fetch();
   });
 
+
   $('#weather-observation').live('pagebeforeshow',function(event) {
 
     // create the list of group observations
@@ -233,7 +318,7 @@ rutgers = (function() {
 
       $('#weather-observation .header').html(htmlOutput).listview("refresh");
 
-      // create the event listeners for the list of weather robservations - must be done in a separate each loop
+      // create the event listeners for the list of weather observations - must be done in a separate each loop from creating the html
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
       collection.each(function(obs) {
         if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
