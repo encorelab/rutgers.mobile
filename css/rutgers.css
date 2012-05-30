@@ -4,3 +4,9 @@
 .text-align-right {
   text-align: right;
 }
+
+.photo-list img {
+    display: inline;
+    width: 49%;
+    height: auto;
+}

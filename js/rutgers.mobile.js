@@ -38,32 +38,47 @@ rutgers = (function() {
     // FIXME: hacky... needs to be here for proper phongep init :(
     document.addEventListener('deviceready', function() {
       console.log("DEVICE READY!!!!");
-      jQuery(document).delegate('.acquire-photo', 'click', function() {
-        var photo = new rutgers.model.Observation();
-        var of = jQuery(this).data('photo-of');
+      jQuery(document).bind('photo_capture_request', function(ev, data) {
+        //var obs = new rutgers.model.PlantsObservation();
+        var obs = data.obs;
+        //var of = jQuery(this).data('photo-of');
+        var of = 'camera';
         
         var captureSuccess = function () {
           console.log("Acquired photo of '"+of+'".');
-          photo.save();
+          // obs.save({}, {
+          //   success: function (savedObs) {
+          console.log("OBS: "+JSON.stringify(obs.toJSON()));
+          //console.log("SAV: "+JSON.stringify(savedObs.toJSON()));
+              
+          //   }
+          // });
 
-          //veos.reportForm.photos[of].push(photo);
-          photo.upload();
-          //veos.reportForm.renderPhotos();
+          // showing picture on local device
+          console.log('Image URL from capture'+obs.imageURL);
+          var cameraImage = jQuery('<img class="photo" />');
+          // set image URI of image element
+          cameraImage.attr('src', obs.imageURL);
+
+          var imageList = jQuery('.photo-list');
+          console.log("Appending Photo "+obs.imageURL);
+          // add newly created image to image list
+          imageList.append(cameraImage);
         };
 
-        photo.on('image_capture', captureSuccess, photo);
+        obs.on('image_capture', captureSuccess, obs);
         
-        switch (jQuery(this).data('acquire-from')) {
+        switch (data.acquireFrom) {
           case 'camera':
-            alert("camera capture");
-            photo.captureFromCamera();
+            //alert("camera capture");
+            obs.captureFromCamera();
             break;
           case 'gallery':
-            alert("gallery capture");
-            photo.captureFromGallery();
+            //alert("gallery capture");
+            obs.captureFromGallery();
             break;
           default:
-            console.error("'"+jQuery(this).data('acquire-from')+"' is not a valid source for acquiring a photo.");
+            console.error("'"+data.acquireFrom+"' is not a valid source for acquiring a photo.");
         }
       });
     });
@@ -244,24 +259,38 @@ rutgers = (function() {
 
 
   $('#add-plant-observation').live('pagebeforeshow',function(event) {
+    var obs = new rutgers.model.PlantsObservation();
+    console.log('Plant observation model created');
+
+    jQuery("#add-plant-observation .acquire-photo").click(function() {
+      jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
+    });
 
     // get form data and submit to DB
     jQuery('#add-plant-observation .submit-button').click(function() {
-      var plantsObservation = new rutgers.model.PlantsObservation();
+      // jQuery('#add-plant-observation .observation-field').each(function () { 
+      //   var f = jQuery(this);
+      //   obs.set(f.attr('name'), f.val()); 
+      // });
+
       var observationTitle = jQuery('#plants-title-input').val();
       var observationSubcategory = jQuery('#plants-subcategory').val();
       var observationSurface = jQuery('#plants-surface-input').val();
       var observationNote = jQuery('#plants-note-input').val();
 
-      plantsObservation.set('title', observationTitle);
-      plantsObservation.set('subcategory', observationSubcategory);
-      plantsObservation.set('surface_cover', observationSurface);
-      plantsObservation.set('note', observationNote);
-      plantsObservation.set('transect', $('.location').attr('transect'));
-      plantsObservation.set('plot', $('.location').attr('plot'));
-      plantsObservation.set('student_name', self.user.name);
-      plantsObservation.set('group_name', self.user.group);
-      plantsObservation.save();
+      obs.set('title', observationTitle);
+      obs.set('subcategory', observationSubcategory);
+      obs.set('surface_cover', observationSurface);
+      obs.set('note', observationNote);
+      obs.set('transect', $('.location').attr('transect'));
+      obs.set('plot', $('.location').attr('plot'));
+      obs.set('student_name', self.user.name);
+      obs.set('group_name', self.user.group);
+      obs.save({}, {
+        success: function () {
+          obs.upload();
+        }
+      });
 
       self.clearInputs('add-plant-observation');
     });
@@ -315,7 +344,11 @@ rutgers = (function() {
       soilWaterObservation.set('plot', $('.location').attr('plot'));
       soilWaterObservation.set('student_name', self.user.name);
       soilWaterObservation.set('group_name', self.user.group);
-      soilWaterObservation.save();
+      soilWaterObservation.save({}, {
+        success: function () {
+          jQuery(document).trigger('observation_save', {obs: soilWaterObservation});
+        }
+      });
 
       self.clearInputs('add-soil-and-water-observation');
     });

@@ -89,6 +89,7 @@
   var Observation = Base.extend({
 
     captureFromCamera: function () {
+      alert('inside capture from camera');
       this.capture(Camera.PictureSourceType.CAMERA);
     },
 
@@ -99,7 +100,7 @@
     capture: function (from) {
       var obs = this;
       var options = {
-        quality: 50,
+        quality: 30,
         destinationType: Camera.DestinationType.FILE_URI,
         sourceType: from
       };
@@ -123,14 +124,18 @@
       var obs = this;
 
       if (!obs.imageURL)
-        throw new Error("Cannot upload photo because it does not have an imageURL! You need to capture an image before uploading.");
+        throw new Error("Cannot upload image because it does not have an imageURL! You need to capture an image before uploading.");
+
+      if (obs.isNew())
+        throw new Error("Cannot upload image because the associated observation has not yet been saved.");
 
       console.log("Uploading photo: "+obs.imageURL)
 
       var options = new FileUploadOptions();
-      options.fileKey = "photo[image]";
+      options.fileKey = obs.singular+"[image]";
       options.fileName = obs.imageURL.substr(obs.imageURL.lastIndexOf('/')+1);
       options.mimeType = "image/jpeg";
+      options.params = {_method: "PUT"};
 
       var success = function (res) {
         console.log("Image uploaded successfully; "+res.bytesSent+" bytes sent.");
@@ -149,6 +154,7 @@
       };
 
       var transfer = new FileTransfer();
+      console.log("Uploading image to : "+obs.url());
       transfer.upload(obs.imageURL, obs.url(), success, failure, options);
     }
   });
@@ -205,6 +211,5 @@
       url: model.baseURL + '/weather_observations.json'
   });
 
-  model.Observation = Observation;
   rutgers.model = model;
 })(window.rutgers);

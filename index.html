@@ -339,7 +339,7 @@
                         <label for="plants-title-input">
                             Title
                         </label>
-                        <input id="plants-title-input" class="clearable" placeholder="" value="" type="text" />
+                        <input id="plants-title-input" class="clearable" placeholder="" value="" type="text" name="title" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
@@ -347,7 +347,7 @@
                         <label for="plants-surface-input">
                             Surface cover (%)
                         </label>
-                        <input id="plants-surface-input" class="clearable" placeholder="% of the plot covered " value="" type="number" />
+                        <input id="plants-surface-input" name="surface_cover" class="clearable" placeholder="% of the plot covered " value="" type="number" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
@@ -369,7 +369,7 @@
                     <a id="select-camera-photo-button" data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="gallery" data-photo-of="camera">
                         Select Photo from Gallery
                     </a>
-                    <div id="camera-image-list" class="photo-list">
+                    <div id="camera-image-list" class="photo-list" style="width: 80%">
                         <!-- Images are added dynamically via camera or gallery selection -->
                     </div>
                 </div>
