@@ -562,7 +562,7 @@ rutgers = (function() {
         //self.restoreState(); TODO?  sets self.plotsCompleted
 
         // go to href="#home"
-        jQuery('#home .username-display').text(account.login);
+        // jQuery('#home .username-display').text(account.login);
         jQuery.mobile.changePage("#home");        
       },
       dataType: 'json'
