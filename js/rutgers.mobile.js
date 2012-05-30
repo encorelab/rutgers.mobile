@@ -363,6 +363,9 @@ rutgers = (function() {
     var obs = new rutgers.model.PlantsObservation();
     console.log('PlantsObservation model created');
 
+    // trying to avoid multiple eventhandler bindings 
+    jQuery("#add-plant-observation .acquire-photo").unbind();
+
     jQuery("#add-plant-observation .acquire-photo").click(function() {
       jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
     });
@@ -403,6 +406,9 @@ rutgers = (function() {
     var obs = new rutgers.model.AnimalsObservation();
     console.log('AnimalsObservation model created');
 
+    // trying to avoid multiple eventhandler bindings 
+    jQuery("#add-animal-observation .acquire-photo").unbind();
+
     jQuery("#add-animal-observation .acquire-photo").click(function() {
       jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
     });
@@ -436,6 +442,9 @@ rutgers = (function() {
   $('#add-soil-and-water-observation').live('pagebeforeshow',function(event) {
     var obs = new rutgers.model.SoilWaterObservation();
     console.log('SoilWaterObservation model created');
+
+    // trying to avoid multiple eventhandler bindings 
+    jQuery("#add-soil-and-water-observation .acquire-photo").unbind();
 
     jQuery("#add-soil-and-water-observation .acquire-photo").click(function() {
       jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
@@ -477,6 +486,9 @@ rutgers = (function() {
   $('#add-weather-observation').live('pagebeforeshow',function(event) {
     var obs = new rutgers.model.WeatherObservation();
     console.log('WeatherObservation model created');
+
+    // trying to avoid multiple eventhandler bindings 
+    jQuery("#add-weather-observation .acquire-photo").unbind();
 
     jQuery("#add-weather-observation .acquire-photo").click(function() {
       jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
