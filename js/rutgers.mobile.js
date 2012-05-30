@@ -159,14 +159,14 @@ rutgers = (function() {
     var htmlOutput = '<li data-role="list-divider" role="heading">Weather Observations</li>';
     var weatherObsCollection = new rutgers.model.WeatherObservations();
     weatherObsCollection.on('reset', function(collection) {
+
+      // might be better to do this with obs.id instead of i and j. Can the observations get reordered
    
       // create the HTML for the list of weather observations
-      var i = 0;       
       collection.each(function(obs) {
         if (obs.get('group_name') === self.user.group) {
-          i++;          
-          htmlOutput += '<li data-theme="c"><a href="#edit-weather-observation" data-transition="slide" class="observation-';
-          htmlOutput += i;
+          htmlOutput += '<li data-theme="c"><a href="#edit-weather-observation" data-transition="slide" class="weather-observation-';
+          htmlOutput += obs.get('id');
           htmlOutput += '">';
           htmlOutput += obs.get('title');
           htmlOutput += "</a></li>";
@@ -179,19 +179,20 @@ rutgers = (function() {
 
       // create the event listeners for the list of weather robservations - must be done in a separate each loop
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
-      i = 0;
       collection.each(function(obs) {
-        i++;        
-        $('#weather-observation .observation-'+i).click(function (){
-          var conditionsList = JSON.parse(obs.get('conditions')).join(', ');
+        if (obs.get('group_name') === self.user.group) {
+          $('#weather-observation .weather-observation-'+obs.get('id')).click(function () {
+            var conditionsList = JSON.parse(obs.get('conditions')).join(', ');
 
-          $('#edit-weather-observation .title').text(obs.get('title'));
-          $('#edit-weather-observation .conditions').text(conditionsList);
-          $('#edit-weather-observation .note').text(obs.get('note'));
-          $('#edit-weather-observation .student-name').text(obs.get('student_name'));
-        });
+            $('#edit-weather-observation .title').text(obs.get('title'));
+            $('#edit-weather-observation .conditions').text(conditionsList);
+            $('#edit-weather-observation .note').text(obs.get('note'));
+            $('#edit-weather-observation .student-name').text(obs.get('student_name'));
+          });
+        } else {
+          console.log('not adding listener, other group');
+        }
       });
-
     });
     // trigger a reset of the weatherObsCollection
     weatherObsCollection.fetch();
