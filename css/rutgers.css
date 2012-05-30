@@ -9,8 +9,9 @@
 	font-weight: bold;
 }
 
-.redBorder {
-	border-color: red;
+.greyed-out {
+	opacity: 0.4;
+}
 
 .photo-list img {
     display: inline;

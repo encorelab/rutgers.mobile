@@ -120,18 +120,20 @@ rutgers = (function() {
     $('#home .second-transect-group').addClass('transect-' + self.transectsAssigned[1]);
     $('#home .second-transect-group').attr('value', self.transectsAssigned[1]);
     $('#home .second-transect-group .accordion-header').text('Transect ' + self.transectsAssigned[1]);
-    var plotsArray = _.uniq(self.plotsCompleted[self.transectsAssigned[1]]);
+    plotsArray = _.uniq(self.plotsCompleted[self.transectsAssigned[1]]);
     if (plotsArray.length === 5) {
       $('#home .second-transect-group .doneness').text(" [done]");
     }
 
     // modify button icons to indicate completeness
     _.each(self.plotsCompleted[self.transectsAssigned[0]], function (plot) {
-      $('.first-transect-group .plot-'+plot).addClass('redBorder');
+      $('.first-transect-group .plot-' + plot).addClass('greyed-out');
+      $('.first-transect-group .plot-' + plot).children('span.ui-btn-inner').children('span.ui-icon').removeClass('ui-icon-arrow').addClass('ui-icon-check');
     });
     _.each(self.plotsCompleted[self.transectsAssigned[1]], function (plot) {
-      $('.second-transect-group .plot-'+plot).addClass('redBorder');
-    });    
+      $('.first-transect-group .plot-' + plot).addClass('greyed-out');
+      $('.second-transect-group .plot-' + plot).children('span.ui-btn-inner').children('span.ui-icon').removeClass('ui-icon-arrow').addClass('ui-icon-check');
+    });
 
     // when a plot button is clicked, set headers, back buttons, etc. on subsequent pages
     $('.plot-button').click(function(){
@@ -197,7 +199,7 @@ rutgers = (function() {
       // create the event listeners for the list of observations - must be done in a separate each loop from creating the html
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
       collection.each(function(obs) {
-        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
           $('#plants-observation .plants-observation-'+obs.get('id')).click(function () {
             $('#edit-plants-observation .title').text(obs.get('title'));
             $('#edit-plants-observation .subcategory').text('subcategory');
@@ -239,7 +241,7 @@ rutgers = (function() {
       // create the event listeners for the list of animals observations - must be done in a separate each loop from creating the html
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
       collection.each(function(obs) {
-        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
           $('#animals-observation .animals-observation-'+obs.get('id')).click(function () {
             $('#edit-animals-observation .title').text(obs.get('title'));
             $('#edit-animals-observation .subcategory').text(obs.get('subcategory'));
@@ -281,7 +283,7 @@ rutgers = (function() {
       // create the event listeners for the list of observations - must be done in a separate each loop
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
       collection.each(function(obs) {
-        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
           $('#soil-and-water-observation .soil-and-water-observation-'+obs.get('id')).click(function () {
             $('#edit-soil-and-water-observation .title').text(obs.get('title'));
             $('#edit-soil-and-water-observation .soil-color').text(obs.get('color'));
@@ -327,7 +329,7 @@ rutgers = (function() {
       // create the event listeners for the list of weather observations - must be done in a separate each loop from creating the html
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
       collection.each(function(obs) {
-        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
           $('#weather-observation .weather-observation-'+obs.get('id')).click(function () {
             var conditionsList = JSON.parse(obs.get('conditions')).join(', ');
 
