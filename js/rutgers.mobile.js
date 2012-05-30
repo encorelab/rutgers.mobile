@@ -14,9 +14,7 @@ rutgers = (function() {
     group:null
   };
   self.transectsAssigned = [];
-  self.plotsCompleted = {};
-
-  //var CURRENT_DB = "http://rollcall.badger.encorelab.org";
+  self.plotsCompleted = {};         // this will record all Done clicks plot-overview - need to run _.uniq on this to get actual plots completed
 
   self.init = function() {
     console.log('Initializing...');
@@ -93,6 +91,14 @@ rutgers = (function() {
     jQuery('.photo-list').html('');
   };
 
+  self.restoreState = function() {
+/*  THIS MAY HAVE TO BE CUT - WOULD BE TOO COMPUTATIONALLY INTENSIVE  
+    var plantsObsCollection = new rutgers.model.PlantsObservations();
+    plantsObsCollection.on('reset', function(collection) {    
+    });
+    // trigger a reset of the ObsCollection
+    soilWaterObsCollection.fetch();*/
+  };
 
   /* =================================== PAGE INITS ========================================= */
 
@@ -102,46 +108,48 @@ rutgers = (function() {
     // assign transects, add the class, add text to the accordions
     $('#home .first-transect-group').addClass('transect-' + self.transectsAssigned[0]);
     $('#home .first-transect-group').attr('value', self.transectsAssigned[0]);
-    $('#home.accordion-header').text('Transect ' + self.transectsAssigned[0]);      // TODO add [done] or [not done] here
+    $('#home .first-transect-group .accordion-header').text('Transect ' + self.transectsAssigned[0]);
+    var plotsArray = _.uniq(self.plotsCompleted[self.transectsAssigned[0]]);
+    if (plotsArray.length === 5) {
+      $('#home .first-transect-group .doneness').text(" [done]");
+    }
     $('#home .second-transect-group').addClass('transect-' + self.transectsAssigned[1]);
     $('#home .second-transect-group').attr('value', self.transectsAssigned[1]);
-    $('#home.accordion-header').text('Transect ' + self.transectsAssigned[1]);      // TODO add [done] or [not done] here
+    $('#home .second-transect-group .accordion-header').text('Transect ' + self.transectsAssigned[1]);
+    plotsArray = _.uniq(self.plotsCompleted[self.transectsAssigned[1]]);
+    if (plotsArray.length === 5) {
+      $('#home .second-transect-group .doneness').text(" [done]");
+    }
 
+    // modify button icons to indicate completeness
+    _.each(self.plotsCompleted[self.transectsAssigned[0]], function (plot) {
+      $('.first-transect-group .plot-' + plot).addClass('greyed-out');
+      $('.first-transect-group .plot-' + plot).children('span.ui-btn-inner').children('span.ui-icon').removeClass('ui-icon-arrow').addClass('ui-icon-check');
+    });
+    _.each(self.plotsCompleted[self.transectsAssigned[1]], function (plot) {
+      $('.first-transect-group .plot-' + plot).addClass('greyed-out');
+      $('.second-transect-group .plot-' + plot).children('span.ui-btn-inner').children('span.ui-icon').removeClass('ui-icon-arrow').addClass('ui-icon-check');
+    });
 
-    // CLOSE BUT CUTTABLE
-/*    _.map(self.plotsCompleted, function (value, key) {
-      //return key (2,3) value(arr,arr)
-      console.log($('.transect-' + key + ' .plot-' + '1'));
-      $('.transect-' + key + ' .plot-' + '1').attr('data-icon', 'check');
-      $('.transect-' + key + ' .plot-' + '1').attr('data-icon-pos', 'left');    // TODO HELP
-      
-
-    });*/
-
-    //$('.plot-button').replaceWith("<a data-role='button' data-transition='none' href='#plot-overview' data-icon='arrow' data-iconpos='left'></a>").trigger('create');
-
-    //$('.plot-button').trigger("create");
-
-//$('.transect-3' + ' .plot-' + '1').children('span.ui-btn-inner').children('span.ui-icon').removeClass('ui-icon-check').addClass('ui-icon-arrow'); WORKS
-
-/*self.plotsCompleted = {2:[1],3:[1,2,3,4,5]};
-
-    _.values(self.plotsCompleted[3]);*/
-
-    // do we need .die()s before each of these, since we'll be returning to this page over and over?
-    // when a button is clicked, add the relevent plot and transect to headers etc on all subsequent pages
+    // when a plot button is clicked, set headers, back buttons, etc. on subsequent pages
     $('.plot-button').click(function(){
       $('.header-title').text("Plot " + $(this).attr('value'));
       $('.back-button').text("Back to Plot " + $(this).attr('value'));
       $('.location').text("Transect " + $(this).parent().parent().attr('value') + ", Plot " + $(this).attr('value'));
+
       $('.location').attr('transect', $(this).parent().parent().attr('value'));
       $('.location').attr('plot', $(this).attr('value'));
     });
   });
 
 
-  $('#plot-overview').live('pagebeforeshow',function(event) {
-    // .done-button event?
+  $('#plot-overview').live('pageinit',function(event) {
+    $('#plot-overview .done-button').die();
+    $('#plot-overview .done-button').click(function() {
+      var transVal = $('.location').attr('transect', $(this).parent().parent().attr('value'));
+      var plotVal = $('.location').attr('plot', $(this).attr('value'));
+      self.plotsCompleted[transVal].push(plotVal);
+    });
   });
 
   // what a plant button is clicked, add the value (plant name) to the plants subcat on plants-observation-category
@@ -187,7 +195,7 @@ rutgers = (function() {
       // create the event listeners for the list of observations - must be done in a separate each loop from creating the html
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
       collection.each(function(obs) {
-        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
           $('#plants-observation .plants-observation-'+obs.get('id')).click(function () {
             $('#edit-plants-observation .title').text(obs.get('title'));
             $('#edit-plants-observation .subcategory').text('subcategory');
@@ -229,7 +237,7 @@ rutgers = (function() {
       // create the event listeners for the list of animals observations - must be done in a separate each loop from creating the html
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
       collection.each(function(obs) {
-        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
           $('#animals-observation .animals-observation-'+obs.get('id')).click(function () {
             $('#edit-animals-observation .title').text(obs.get('title'));
             $('#edit-animals-observation .subcategory').text(obs.get('subcategory'));
@@ -271,7 +279,7 @@ rutgers = (function() {
       // create the event listeners for the list of observations - must be done in a separate each loop
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
       collection.each(function(obs) {
-        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
           $('#soil-and-water-observation .soil-and-water-observation-'+obs.get('id')).click(function () {
             $('#edit-soil-and-water-observation .title').text(obs.get('title'));
             $('#edit-soil-and-water-observation .soil-color').text(obs.get('color'));
@@ -317,7 +325,7 @@ rutgers = (function() {
       // create the event listeners for the list of weather observations - must be done in a separate each loop from creating the html
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
       collection.each(function(obs) {
-        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
           $('#weather-observation .weather-observation-'+obs.get('id')).click(function () {
             var conditionsList = JSON.parse(obs.get('conditions')).join(', ');
 
@@ -501,9 +509,9 @@ rutgers = (function() {
 
     // dummy data:
     // self.transectsAssigned = [2,3];
-    self.plotsCompleted = {2:[1],3:[1,2,3,4,5]};
+    // self.plotsCompleted = {2:[1],3:[1,2,3,4,5]};
 
-    $.ajax("http://rollcall.badger.encorelab.org/users/"+ account.login +".json", {
+    $.ajax(self.url + '/users/' + account.login +".json", {
       type: 'get',
       success: function (data) {
         // name does not come from Rollcall
@@ -512,7 +520,13 @@ rutgers = (function() {
         self.user.group = data.groups[0].name;
         console.log('group: '+ self.user.group);
         self.transectsAssigned = JSON.parse(data.groups[0].metadata.transects);
+
+        self.plotsCompleted[self.transectsAssigned[0]] = [];
+        self.plotsCompleted[self.transectsAssigned[1]] = [];
+
         console.log('transects: '+ self.transectsAssigned);
+
+        //self.restoreState(); TODO?  sets self.plotsCompleted
 
         // go to href="#home"
         jQuery('#home .username-display').text(account.login);

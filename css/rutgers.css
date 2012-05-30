@@ -5,6 +5,14 @@
   text-align: right;
 }
 
+.accordion-header {
+	font-weight: bold;
+}
+
+.greyed-out {
+	opacity: 0.4;
+}
+
 .photo-list img {
     display: inline;
     width: 49%;
