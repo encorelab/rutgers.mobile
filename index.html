@@ -128,7 +128,7 @@
                 <div>
                     <p>
                         <strong>
-                            Choose a category to review or add &nbsp;observations
+                            Choose a category to review or add observations
                         </strong>
                     </p>
                 </div>
@@ -234,11 +234,11 @@
                 </h3>
             </div>
             <div data-role="content">
-                <ul data-role="listview" data-divider-theme="b" data-inset="true">
-                    <li data-role="list-divider" role="heading">
+                <ul class="header" data-role="listview" data-divider-theme="b" data-inset="true">
+<!--                    <li data-role="list-divider" role="heading">
                         Plant Observations
                     </li>
-                    <li data-theme="c">
+                     <li data-theme="c">
                         <a href="#page1" data-transition="slide">
                             Observation title 1
                         </a>
@@ -247,14 +247,14 @@
                         <a href="#page1" data-transition="slide">
                             Observation title 2
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
                 <a data-role="button" data-transition="none" data-theme="e" href="#plants-observation-category" data-icon="plus" data-iconpos="left">
                     Add new observation
                 </a>
 <!--                 <a data-role="button" data-transition="none" data-theme="e" href="#plants-observation-category" data-icon="plus" data-iconpos="left">
                     Edit previous observation
-                </a>  NEED THE EDIT BUTTON, BUT UNCLEAR FROM THE MOCKUP WHERE IT IS REQUIRED -->              
+                </a>  -->
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-l" data-iconpos="left">
                 </a>
             </div>
@@ -381,6 +381,47 @@
                 </a>
             </div>
         </div>
+        <div data-role="page" id="edit-plants-observation">
+            <div data-theme="a" data-role="header">
+                <h3 class="header-title">
+                </h3>
+            </div>
+            <div data-role="content">
+                <div>
+                    <p>
+                        <strong>Title: </strong>
+                        <span class="title"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Subcategory: </strong>
+                        <span class="subcategory"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Surface cover: </strong>
+                        <span class="surface-cover"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Note: </strong>
+                        <span class="note"></strong>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Observation made by: </strong>
+                        <span class="student-name"></strong>
+                    </p>
+                </div>
+                <br />
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                </a>
+            </div>
+        </div>        
 
 <!-- ================================================================================================================ -->
 <!-- ==================================================== ANIMALS =================================================== -->
@@ -392,8 +433,8 @@
                 </h3>
             </div>
             <div data-role="content">
-                <ul data-role="listview" data-divider-theme="b" data-inset="true">
-                    <li data-role="list-divider" role="heading">
+                <ul class="header" data-role="listview" data-divider-theme="b" data-inset="true">
+<!--                     <li data-role="list-divider" role="heading">
                         Animal Observations
                     </li>
                     <li data-theme="c">
@@ -405,13 +446,12 @@
                         <a href="#page1" data-transition="slide">
                             Observation title 2
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
                 <a data-role="button" data-transition="none" data-theme="e" href="#animals-observation-category" data-icon="plus" data-iconpos="left">
                     Add new observation
                 </a>
-                <a data-role="button" data-transition="none" href="#home" data-icon="home" data-iconpos="left">
-                    Home
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-l" data-iconpos="left">
                 </a>
             </div>
         </div>
@@ -430,7 +470,7 @@
                 </div>
                 <ul data-role="listview" data-divider-theme="b" data-inset="true">
                     <li data-role="list-divider" role="heading">
-                        Plants
+                        Animals
                     </li>
                     <li data-theme="c">
                         <a class="animals-button" value="Ribbed Muscle" href="#add-animal-observation" data-transition="slide">
@@ -510,7 +550,7 @@
                         <label for="animals-count-input">
                             Count
                         </label>
-                        <input id="animals-count-input" class="clearable" placeholder="% of the plot covered " value="" type="number" />
+                        <input id="animals-count-input" class="clearable" value="" type="number" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
@@ -529,6 +569,47 @@
                     <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px" />
                 </div>
                 <a class="submit-button" data-role="button" data-transition="none" href="#plot-overview" data-theme="b">Submit</a>
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                </a>
+            </div>
+        </div>
+        <div data-role="page" id="edit-animals-observation">
+            <div data-theme="a" data-role="header">
+                <h3 class="header-title">
+                </h3>
+            </div>
+            <div data-role="content">
+                <div>
+                    <p>
+                        <strong>Title: </strong>
+                        <span class="title"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Subcategory: </strong>
+                        <span class="subcategory"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Count: </strong>
+                        <span class="count"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Note: </strong>
+                        <span class="note"></strong>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Observation made by: </strong>
+                        <span class="student-name"></strong>
+                    </p>
+                </div>
+                <br />
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
@@ -919,7 +1000,7 @@
                         <span class="student-name"></strong>
                     </p>
                 </div>
-                <br />             
+                <br />
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
