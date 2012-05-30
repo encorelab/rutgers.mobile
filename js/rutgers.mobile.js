@@ -82,7 +82,9 @@ rutgers = (function() {
     $('#' + page + ' input[type=radio]').checkboxradio("refresh");
   };
 
-  /* =============== PAGE INITS ================ */
+
+  /* =================================== PAGE INITS ========================================= */
+
 
   $('#home').live('pagebeforeshow', function(event) {
 
@@ -95,7 +97,7 @@ rutgers = (function() {
     $('#home.accordion-header').text('Transect ' + self.transectsAssigned[1]);      // TODO add [done] or [not done] here
 
 
-    
+    // CLOSE BUT CUTTABLE
 /*    _.map(self.plotsCompleted, function (value, key) {
       //return key (2,3) value(arr,arr)
       console.log($('.transect-' + key + ' .plot-' + '1'));
@@ -124,16 +126,8 @@ rutgers = (function() {
       $('.location').attr('transect', $(this).parent().parent().attr('value'));
       $('.location').attr('plot', $(this).attr('value'));
     });
-
-  /* ======================================================================================== */
-
-
-
-
-  /* ======================================================================================== */
-
-
   });
+
 
   $('#plot-overview').live('pagebeforeshow',function(event) {
     // .done-button event?
@@ -154,6 +148,57 @@ rutgers = (function() {
       $('#animals-subcategory').text($(this).attr('value'));
     });
   });
+
+
+/* =============== LIST ================ */
+
+
+  $('#weather-observation').live('pagebeforeshow',function(event) {
+
+    // create the list of group observations (currently does)
+    var htmlOutput = '<li data-role="list-divider" role="heading">Weather Observations</li>';
+    var weatherObsCollection = new rutgers.model.WeatherObservations();
+    weatherObsCollection.on('reset', function(collection) {
+   
+      // create the HTML for the list of weather observations
+      var i = 0;       
+      collection.each(function(obs) {
+        if (obs.get('group_name') === self.user.group) {
+          i++;          
+          htmlOutput += '<li data-theme="c"><a href="#edit-weather-observation" data-transition="slide" class="observation-';
+          htmlOutput += i;
+          htmlOutput += '">';
+          htmlOutput += obs.get('title');
+          htmlOutput += "</a></li>";
+        } else {
+          console.log('observation from other group - group ' + obs.get('group_name'));
+        }
+      });
+      htmlOutput += "</ul>";
+      $('#weather-observation .header').html(htmlOutput).listview("refresh");
+
+      // create the event listeners for the list of weather robservations - must be done in a separate each loop
+      // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
+      i = 0;
+      collection.each(function(obs) {
+        i++;        
+        $('#weather-observation .observation-'+i).click(function (){
+          var conditionsList = JSON.parse(obs.get('conditions')).join(', ');
+
+          $('#edit-weather-observation .title').text(obs.get('title'));
+          $('#edit-weather-observation .conditions').text(conditionsList);
+          $('#edit-weather-observation .note').text(obs.get('note'));
+          $('#edit-weather-observation .student-name').text(obs.get('student_name'));
+        });
+      });
+
+    });
+    // trigger a reset of the weatherObsCollection
+    weatherObsCollection.fetch();
+  });
+
+
+/* =============== ADD ================ */
 
 
   $('#add-plant-observation').live('pagebeforeshow',function(event) {
@@ -233,30 +278,6 @@ rutgers = (function() {
       self.clearInputs('add-soil-and-water-observation');
     });
   });
-
-  $('#weather-observation').live('pagebeforeshow',function(event) {
-
-
-    var htmlOutput = '<li data-role="list-divider" role="heading">Weather Observations</li>';
-    var weatherObsCollection = new rutgers.model.WeatherObservations();
-    weatherObsCollection.on('reset', function(collection) {
-      collection.each(function(obs) {
-        if (obs.get('student_name') === self.user.name) {
-          console.log('my obs conditions: ' + obs.get('conditions'));
-          htmlOutput += '<li data-theme="c"><a href="#page1" data-transition="slide">';    // TODO fix href
-          htmlOutput += obs.get('title');
-          htmlOutput += "</a></li>";
-        } else {
-          console.log('other guy: ' + obs.get('student_name'));
-        }
-      });
-      htmlOutput += "</ul>";
-      $('#weather-observation .header').html(htmlOutput).listview("refresh");
-    });
-    weatherObsCollection.fetch();
-
-  });
-
 
   $('#add-weather-observation').live('pagebeforeshow',function(event) {
 
