@@ -231,26 +231,10 @@
             </div>
             <div data-role="content">
                 <ul class="header" data-role="listview" data-divider-theme="b" data-inset="true">
-<!--                    <li data-role="list-divider" role="heading">
-                        Plant Observations
-                    </li>
-                     <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Observation title 1
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Observation title 2
-                        </a>
-                    </li> -->
                 </ul>
                 <a data-role="button" data-transition="none" data-theme="e" href="#plants-observation-category" data-icon="plus" data-iconpos="left">
                     Add new observation
                 </a>
-<!--                 <a data-role="button" data-transition="none" data-theme="e" href="#plants-observation-category" data-icon="plus" data-iconpos="left">
-                    Edit previous observation
-                </a>  -->
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="arrow-l" data-iconpos="left">
                 </a>
             </div>
@@ -354,11 +338,11 @@
                         <textarea id="plants-note-input" class="clearable" placeholder=""></textarea>
                     </fieldset>
                 </div>
-                <div id="camera-buttons">
-                    <a id="add-camera-photo-button" data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="camera" data-photo-of="camera">
+                <div class="camera-buttons">
+                    <a data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="camera" data-photo-of="camera">
                         Take Photo
                     </a>
-                    <a id="select-camera-photo-button" data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="gallery" data-photo-of="camera">
+                    <a data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="gallery" data-photo-of="camera">
                         Select Photo from Gallery
                     </a>
                     <div class="photo-list">
@@ -397,16 +381,16 @@
                 <div>
                     <p>
                         <strong>Note: </strong>
-                        <span class="note"></strong>
+                        <span class="note"></span>
                     </p>
                 </div>
                 <div>
                     <p>
                         <strong>Observation made by: </strong>
-                        <span class="student-name"></strong>
+                        <span class="student-name"></span>
                     </p>
                 </div>
-                <div><img class="photo"></img>
+                <div><img src="" class="photo" alt="Taken photo" />
                 </div>
                 <br />
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
@@ -425,19 +409,6 @@
             </div>
             <div data-role="content">
                 <ul class="header" data-role="listview" data-divider-theme="b" data-inset="true">
-<!--                     <li data-role="list-divider" role="heading">
-                        Animal Observations
-                    </li>
-                    <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Observation title 1
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Observation title 2
-                        </a>
-                    </li> -->
                 </ul>
                 <a data-role="button" data-transition="none" data-theme="e" href="#animals-observation-category" data-icon="plus" data-iconpos="left">
                     Add new observation
@@ -525,7 +496,7 @@
                         <strong>
                             Subcategory:&nbsp;
                         </strong>
-                        <span id="animals-subcategory" />
+                        <span id="animals-subcategory"></span>
                     </p>
                 </div>
                 <div data-role="fieldcontain">
@@ -552,11 +523,11 @@
                         <textarea id="animals-note-input" class="clearable" placeholder=""></textarea>
                     </fieldset>
                 </div>
-                <div id="camera-buttons">
-                    <a id="add-camera-photo-button" data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="camera" data-photo-of="camera">
+                <div class="camera-buttons">
+                    <a data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="camera" data-photo-of="camera">
                         Take Photo
                     </a>
-                    <a id="select-camera-photo-button" data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="gallery" data-photo-of="camera">
+                    <a data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="gallery" data-photo-of="camera">
                         Select Photo from Gallery
                     </a>
                     <div class="photo-list">
@@ -595,16 +566,16 @@
                 <div>
                     <p>
                         <strong>Note: </strong>
-                        <span class="note"></strong>
+                        <span class="note"></span>
                     </p>
                 </div>
                 <div>
                     <p>
                         <strong>Observation made by: </strong>
-                        <span class="student-name"></strong>
+                        <span class="student-name"></span>
                     </p>
                 </div>
-                <div><img class="photo"></img>
+                <div><img src="" class="photo" alt="Taken photo" />
                 </div>                
                 <br />
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
@@ -623,19 +594,6 @@
             </div>
             <div data-role="content">
                 <ul class="header" data-role="listview" data-divider-theme="b" data-inset="true">
-<!--                     <li data-role="list-divider" role="heading">
-                        Soil/Water Observations
-                    </li>
-                    <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Observation title 1
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Observation title 2
-                        </a>
-                    </li>-->
                 </ul>
                 <a data-role="button" data-transition="none" data-theme="e" href="#add-soil-and-water-observation" data-icon="plus" data-iconpos="left">
                     Add new observation
@@ -774,11 +732,11 @@
                         <textarea id="soil-and-water-note-input" class="clearable" placeholder="e.g. How long did you observe?"></textarea>
                     </fieldset>
                 </div>
-                <div id="camera-buttons">
-                    <a id="add-camera-photo-button" data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="camera" data-photo-of="camera">
+                <div class="camera-buttons">
+                    <a data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="camera" data-photo-of="camera">
                         Take Photo
                     </a>
-                    <a id="select-camera-photo-button" data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="gallery" data-photo-of="camera">
+                    <a data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="gallery" data-photo-of="camera">
                         Select Photo from Gallery
                     </a>
                     <div class="photo-list">
@@ -835,16 +793,16 @@
                 <div>
                     <p>
                         <strong>Note: </strong>
-                        <span class="note"></strong>
+                        <span class="note"></span>
                     </p>
                 </div>
                 <div>
                     <p>
                         <strong>Observation made by: </strong>
-                        <span class="student-name"></strong>
+                        <span class="student-name"></span>
                     </p>
                 </div>
-                <div><img class="photo"></img>
+                <div><img src="" class="photo" alt="Taken photo" />
                 </div>                
                 <br />             
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
@@ -864,19 +822,6 @@
             </div>
             <div data-role="content">
                 <ul data-role="listview" data-divider-theme="b" data-inset="true" class="header">
-<!--                     <li data-role="list-divider" role="heading">
-                        Weather Observations
-                    </li>
-                     <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Observation title 1
-                        </a>
-                    </li>
-                    <li data-theme="c">
-                        <a href="#page1" data-transition="slide">
-                            Observation title 2
-                        </a>
-                    </li> -->
                 </ul>
                 <a data-role="button" data-transition="none" data-theme="e" href="#add-weather-observation" data-icon="plus" data-iconpos="left">
                     Add new observation
@@ -912,7 +857,7 @@
                         <label for="weather-title-input">
                             Title
                         </label>
-                        <input id="weather-title-input" class="clearable" placeholder="" value="" type="text" ></>
+                        <input id="weather-title-input" class="clearable" placeholder="" value="" type="text" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
@@ -962,11 +907,11 @@
                         <textarea id="weather-note-input" class="clearable" placeholder="e.g. How long did you observe?"></textarea>
                     </fieldset>
                 </div>
-                <div id="camera-buttons">
-                    <a id="add-camera-photo-button" data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="camera" data-photo-of="camera">
+                <div class="camera-buttons">
+                    <a data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="camera" data-photo-of="camera">
                         Take Photo
                     </a>
-                    <a id="select-camera-photo-button" data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="gallery" data-photo-of="camera">
+                    <a data-role="button" data-transition="fade" data-icon="plus" data-iconpos="left" class="acquire-photo" data-acquire-from="gallery" data-photo-of="camera">
                         Select Photo from Gallery
                     </a>
                     <div class="photo-list">
@@ -999,16 +944,16 @@
                 <div>
                     <p>
                         <strong>Note: </strong>
-                        <span class="note"></strong>
+                        <span class="note"></span>
                     </p>
                 </div>
                 <div>
                     <p>
                         <strong>Observation made by: </strong>
-                        <span class="student-name"></strong>
+                        <span class="student-name"></span>
                     </p>
                 </div>
-                <div><img class="photo"></img>
+                <div><img src="" class="photo" alt="Taken photo" />
                 </div>
                 <br />
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
