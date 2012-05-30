@@ -89,7 +89,7 @@
   var Observation = Base.extend({
 
     captureFromCamera: function () {
-      alert('inside capture from camera');
+      console.log('inside capture from camera');
       this.capture(Camera.PictureSourceType.CAMERA);
     },
 

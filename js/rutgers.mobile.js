@@ -62,11 +62,11 @@ rutgers = (function() {
         
         switch (data.acquireFrom) {
           case 'camera':
-            //alert("camera capture");
+            console.log("camera capture");
             obs.captureFromCamera();
             break;
           case 'gallery':
-            //alert("gallery capture");
+            console.log("gallery capture");
             obs.captureFromGallery();
             break;
           default:
