@@ -3,9 +3,15 @@
 var rutgers = window.rutgers || {};
 
 rutgers = (function() {
+
+  $(document).bind('mobileinit', function () {
+      jQuery.mobile.pushStateEnabled = false;
+  });
+
   "use strict";
   var self = {};
   self.url = 'http://rollcall.badger.encorelab.org';
+  self.photoURL = 'http://backend.rutgers.badger.encorelab.org/'
   var account = {'login':'','password':''};
   self.token = '';
 
@@ -198,10 +204,11 @@ rutgers = (function() {
         if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
           $('#plants-observation .plants-observation-'+obs.get('id')).click(function () {
             $('#edit-plants-observation .title').text(obs.get('title'));
-            $('#edit-plants-observation .subcategory').text('subcategory');
+            $('#edit-plants-observation .subcategory').text(obs.get('subcategory'));
             $('#edit-plants-observation .surface-cover').text(obs.get('surface_cover'));
             $('#edit-plants-observation .note').text(obs.get('note'));
             $('#edit-plants-observation .student-name').text(obs.get('student_name'));
+            $('#edit-plants-observation .photo').attr('src', self.photoURL+obs.get('image_big_url'));
           });
         } else {
           console.log('not adding listener, other group');
@@ -244,6 +251,7 @@ rutgers = (function() {
             $('#edit-animals-observation .count').text(obs.get('note'));
             $('#edit-animals-observation .note').text(obs.get('count'));
             $('#edit-animals-observation .student-name').text(obs.get('student_name'));
+            $('#edit-animals-observation .photo').attr('src', self.photoURL+obs.get('image_big_url'));
           });
         } else {
           console.log('not adding listener, other group');
@@ -289,6 +297,7 @@ rutgers = (function() {
             $('#edit-soil-and-water-observation .water-level').text(obs.get('water_level'));
             $('#edit-soil-and-water-observation .note').text(obs.get('note'));
             $('#edit-soil-and-water-observation .student-name').text(obs.get('student_name'));
+            $('#edit-soil-and-water-observation .photo').attr('src', self.photoURL+obs.get('image_big_url'));
           });
         } else {
           console.log('not adding listener, other group');
@@ -333,6 +342,7 @@ rutgers = (function() {
             $('#edit-weather-observation .conditions').text(conditionsList);
             $('#edit-weather-observation .note').text(obs.get('note'));
             $('#edit-weather-observation .student-name').text(obs.get('student_name'));
+            $('#edit-weather-observation .photo').attr('src', self.photoURL+obs.get('image_big_url'));
           });
         } else {
           console.log('not adding listener, other group');
