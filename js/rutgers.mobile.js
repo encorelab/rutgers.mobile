@@ -131,7 +131,7 @@ rutgers = (function() {
     // modify button icons to indicate completeness
     _.each(self.plotsCompleted[self.transectsAssigned[0]], function (plot) {
       $('.first-transect-group .plot-' + plot).addClass('greyed-out');
-      // jQuery way to do this is broken, using this hacky way
+      // jQuery way to do this is broken, using this hacky method instead
       $('.first-transect-group .plot-' + plot).children('span.ui-btn-inner').children('span.ui-icon').removeClass('ui-icon-arrow').addClass('ui-icon-check');
     });
     _.each(self.plotsCompleted[self.transectsAssigned[1]], function (plot) {
@@ -179,7 +179,7 @@ rutgers = (function() {
 
 /* =============== LIST ================ */
 
-  $('#plants-observation').live('pagebeforecreate',function(event) {
+  $('#plants-observation').live('pagebeforeshow',function(event) {
 
     // create the list of group observations
     var htmlOutput = '<li data-role="list-divider" role="heading">Plant Observations</li>';
@@ -222,7 +222,7 @@ rutgers = (function() {
   });
 
 
-  $('#animals-observation').live('pagebeforecreate',function(event) {
+  $('#animals-observation').live('pagebeforeshow',function(event) {
 
     // create the list of group observations
     var htmlOutput = '<li data-role="list-divider" role="heading">Animal Observations</li>';
@@ -265,7 +265,7 @@ rutgers = (function() {
   });
 
 
-  $('#soil-and-water-observation').live('pagebeforecreate',function(event) {
+  $('#soil-and-water-observation').live('pagebeforeshow',function(event) {
 
     // create the list of group observations
     var htmlOutput = '<li data-role="list-divider" role="heading">Soil/Water Observations</li>';
@@ -311,7 +311,7 @@ rutgers = (function() {
   });
 
 
-  $('#weather-observation').live('pagebeforecreate',function(event) {
+  $('#weather-observation').live('pagebeforeshow',function(event) {
 
     // create the list of group observations
     var htmlOutput = '<li data-role="list-divider" role="heading">Weather Observations</li>';
