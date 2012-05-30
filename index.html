@@ -223,6 +223,11 @@
             <div data-theme="a" data-role="footer">
             </div>
         </div>
+
+<!-- ================================================================================================================ -->
+<!-- ==================================================== PLANTS ==================================================== -->
+<!-- ================================================================================================================ -->
+
         <div data-role="page" id="plants-observation">
             <div data-theme="a" data-role="header">
                 <h3 class="header-title">
@@ -376,6 +381,11 @@
                 </a>
             </div>
         </div>
+
+<!-- ================================================================================================================ -->
+<!-- ==================================================== ANIMALS =================================================== -->
+<!-- ================================================================================================================ -->
+
         <div data-role="page" id="animals-observation">
             <div data-theme="a" data-role="header">
                 <h3 class="header-title">
@@ -524,14 +534,18 @@
             </div>
         </div>
 
+<!-- ================================================================================================================ -->
+<!-- ================================================== SOIL/WATER ================================================== -->
+<!-- ================================================================================================================ -->        
+
         <div data-role="page" id="soil-and-water-observation">
             <div data-theme="a" data-role="header">
                 <h3 class="header-title">
                 </h3>
             </div>
             <div data-role="content">
-                <ul data-role="listview" data-divider-theme="b" data-inset="true">
-                    <li data-role="list-divider" role="heading">
+                <ul class="header" data-role="listview" data-divider-theme="b" data-inset="true">
+<!--                     <li data-role="list-divider" role="heading">
                         Soil/Water Observations
                     </li>
                     <li data-theme="c">
@@ -543,7 +557,7 @@
                         <a href="#page1" data-transition="slide">
                             Observation title 2
                         </a>
-                    </li>
+                    </li>-->
                 </ul>
                 <a data-role="button" data-transition="none" data-theme="e" href="#add-soil-and-water-observation" data-icon="plus" data-iconpos="left">
                     Add new observation
@@ -576,10 +590,10 @@
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="soilwater-title-input">
+                        <label for="soil-and-water-title-input">
                             Title
                         </label>
-                        <input id="soilwater-title-input" class="clearable" placeholder="" value="" type="text" />
+                        <input id="soil-and-water-title-input" class="clearable" placeholder="" value="" type="text" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
@@ -599,7 +613,7 @@
                         <label for="radio3">
                             Dark brown
                         </label>
-                        <input name="color-radios" id="radio4" value="radio4" type="radio" />
+                        <input name="color-radios" id="radio4" value="Black" type="radio" />
                         <label for="radio4">
                             Black
                         </label>
@@ -618,7 +632,7 @@
                         <label for="radio6">
                             Silty
                         </label>
-                        <input name="texture-radios" id="radio7" value="radio7" type="radio" />
+                        <input name="texture-radios" id="radio7" value="Lomay" type="radio" />
                         <label for="radio7">
                             Loamy
                         </label>
@@ -633,13 +647,13 @@
                         <legend>
                             Organics
                         </legend>
-                        <input name="organics-radios" id="radio9" value="radio1" type="radio" />
+                        <input name="organics-radios" id="radio9" value="Lots of organic matter" type="radio" />
                         <label for="radio9">
                             Lots of organic matter
                         </label>
-                        <input name="organics-radios" id="radio10" value="Some of organic matter" type="radio" />
+                        <input name="organics-radios" id="radio10" value="Some organic matter" type="radio" />
                         <label for="radio10">
-                            Some of organic matter
+                            Some organic matter
                         </label>
                         <input name="organics-radios" id="radio11" value="No organic matter" type="radio" />
                         <label for="radio11">
@@ -668,18 +682,18 @@
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="soilwater-water-input">
+                        <label for="soil-and-water-water-input">
                             Centimeters of water on surface
                         </label>
-                        <input id="soilwater-title-input" class="clearable" placeholder="to one decimal place e.g. 1.2 cm" value="" type="text" />
+                        <input id="soil-and-water-water-input" class="clearable" placeholder="to one decimal place e.g. 1.2 cm" value="" type="text" />
                     </fieldset>
                 </div>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="soilwater-note-input">
+                        <label for="soil-and-water-note-input">
                             Note
                         </label>
-                        <textarea id="soilwater-note-input" class="clearable" placeholder="e.g. How long did you observe?">
+                        <textarea id="soil-and-water-note-input" class="clearable" placeholder="e.g. How long did you observe?">
                         </textarea>
                     </fieldset>
                 </div>
@@ -694,6 +708,71 @@
                 </a>
             </div>
         </div>
+        <div data-role="page" id="edit-soil-and-water-observation">
+            <div data-theme="a" data-role="header">
+                <h3 class="header-title">
+                </h3>
+            </div>
+            <div data-role="content">
+                <div>
+                    <p>
+                        <strong>Title: </strong>
+                        <span class="title"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Soil color: </strong>
+                        <span class="soil-color"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Texture: </strong>
+                        <span class="texture"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Organics: </strong>
+                        <span class="organics"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Water: </strong>
+                        <span class="water"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Water level: </strong>
+                        <span class="water-level"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Note: </strong>
+                        <span class="note"></strong>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <strong>Observation made by: </strong>
+                        <span class="student-name"></strong>
+                    </p>
+                </div>
+                <br />             
+                <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
+                </a>
+            </div>
+        </div> 
+
+<!-- ================================================================================================================ -->
+<!-- ==================================================== WEATHER =================================================== -->
+<!-- ================================================================================================================ -->
+
+
         <div data-role="page" id="weather-observation">
             <div data-theme="a" data-role="header">
                 <h3 class="header-title">
@@ -809,7 +888,7 @@
                 <a class="back-button" data-role="button" data-transition="none" href="#plot-overview" data-icon="home" data-iconpos="left">
                 </a>
             </div>
-        </div>
+        </div>        
         <div data-role="page" id="edit-weather-observation">
             <div data-theme="a" data-role="header">
                 <h3 class="header-title">

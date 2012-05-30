@@ -152,19 +152,60 @@ rutgers = (function() {
 
 /* =============== LIST ================ */
 
+  $('#soil-and-water-observation').live('pagebeforeshow',function(event) {
+
+    // create the list of group observations
+    var htmlOutput = '<li data-role="list-divider" role="heading">Soil/Water Observations</li>';
+    var soilWaterObsCollection = new rutgers.model.SoilWaterObservations();
+    soilWaterObsCollection.on('reset', function(collection) {
+   
+      // create the HTML for the list of soil/water observations for this group, transect, plot
+      collection.each(function(obs) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
+          htmlOutput += '<li data-theme="c"><a href="#edit-soil-and-water-observation" data-transition="slide" class="soil-and-water-observation-';
+          htmlOutput += obs.get('id');
+          htmlOutput += '">';
+          htmlOutput += obs.get('title');
+          htmlOutput += "</a></li>";
+        } else {
+          console.log('observation from other group - group ' + obs.get('group_name'));
+        }
+      });
+      $('#soil-and-water-observation .header').html(htmlOutput).listview("refresh");
+
+      // create the event listeners for the list of observations - must be done in a separate each loop
+      // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
+      collection.each(function(obs) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
+          $('#soil-and-water-observation .soil-and-water-observation-'+obs.get('id')).click(function () {
+            $('#edit-soil-and-water-observation .title').text(obs.get('title'));
+            $('#edit-soil-and-water-observation .soil-color').text(obs.get('color'));
+            $('#edit-soil-and-water-observation .texture').text(obs.get('texture'));
+            $('#edit-soil-and-water-observation .organics').text(obs.get('organics'));
+            $('#edit-soil-and-water-observation .water').text(obs.get('water'));
+            $('#edit-soil-and-water-observation .water-level').text(obs.get('water_level'));
+            $('#edit-soil-and-water-observation .note').text(obs.get('note'));
+            $('#edit-soil-and-water-observation .student-name').text(obs.get('student_name'));
+          });
+        } else {
+          console.log('not adding listener, other group');
+        }
+      });
+    });
+    // trigger a reset of the ObsCollection
+    soilWaterObsCollection.fetch();
+  });
 
   $('#weather-observation').live('pagebeforeshow',function(event) {
 
-    // create the list of group observations (currently does)
+    // create the list of group observations
     var htmlOutput = '<li data-role="list-divider" role="heading">Weather Observations</li>';
     var weatherObsCollection = new rutgers.model.WeatherObservations();
     weatherObsCollection.on('reset', function(collection) {
-
-      // might be better to do this with obs.id instead of i and j. Can the observations get reordered
    
-      // create the HTML for the list of weather observations
+      // create the HTML for the list of weather observations for this group, transect, plot
       collection.each(function(obs) {
-        if (obs.get('group_name') === self.user.group) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') === JSON.parse($('.location').attr('transect'))) && (obs.get('plot') === JSON.parse($('.location').attr('plot'))) ) {
           htmlOutput += '<li data-theme="c"><a href="#edit-weather-observation" data-transition="slide" class="weather-observation-';
           htmlOutput += obs.get('id');
           htmlOutput += '">';
@@ -174,13 +215,13 @@ rutgers = (function() {
           console.log('observation from other group - group ' + obs.get('group_name'));
         }
       });
-      htmlOutput += "</ul>";
+
       $('#weather-observation .header').html(htmlOutput).listview("refresh");
 
       // create the event listeners for the list of weather robservations - must be done in a separate each loop
       // (maybe due to the fact that element doesn't exist to have a listener placed on it until after the listview(refresh)?)
       collection.each(function(obs) {
-        if (obs.get('group_name') === self.user.group) {
+        if ( (obs.get('group_name') === self.user.group) && (obs.get('transect') == $('.location').attr('transect')) && (obs.get('plot') == $('.location').attr('plot')) ) {
           $('#weather-observation .weather-observation-'+obs.get('id')).click(function () {
             var conditionsList = JSON.parse(obs.get('conditions')).join(', ');
 
@@ -255,13 +296,13 @@ rutgers = (function() {
     // get form data and submit to DB
     jQuery('#add-soil-and-water-observation .submit-button').click(function() {
       var soilWaterObservation = new rutgers.model.SoilWaterObservation();
-      var observationTitle = jQuery('#soilwater-title-input').val();
+      var observationTitle = jQuery('#soil-and-water-title-input').val();
       var obserationColor = jQuery('input:radio[name=color-radios]:checked').val();
       var observationTexture = jQuery('input:radio[name=texture-radios]:checked').val();
       var observationOrganics = jQuery('input:radio[name=organics-radios]:checked').val();
       var observationWater =jQuery('input:radio[name=water-radios]:checked').val();
-      var observationWaterLevel = jQuery('soilwater-water-input').val();
-      var observationNote = jQuery('#soilwater-note-input').val();
+      var observationWaterLevel = jQuery('#soil-and-water-water-input').val();
+      var observationNote = jQuery('#soil-and-water-note-input').val();
 
       soilWaterObservation.set('title', observationTitle);
       soilWaterObservation.set('color', obserationColor);
