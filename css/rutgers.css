@@ -4,3 +4,11 @@
 .text-align-right {
   text-align: right;
 }
+
+.accordion-header {
+	font-weight: bold;
+}
+
+.redBorder {
+	border-color: red;
+}
