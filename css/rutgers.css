@@ -20,5 +20,5 @@
 .photo-list img {
     display: inline;
     width: 49%;
-    height: 49%;
+    height: auto;
 }
