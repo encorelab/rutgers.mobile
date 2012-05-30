@@ -12,7 +12,7 @@ rutgers = (function() {
   "use strict";
   var self = {};
   self.url = 'http://rollcall.badger.encorelab.org';
-  self.photoURL = 'http://backend.rutgers.badger.encorelab.org/'
+  self.photoURL = 'http://backend.rutgers.badger.encorelab.org/';
   var account = {'login':'','password':''};
   self.token = '';
 
@@ -444,11 +444,13 @@ rutgers = (function() {
     console.log('SoilWaterObservation model created');
 
     // trying to avoid multiple eventhandler bindings 
-    jQuery("#add-soil-and-water-observation .acquire-photo").unbind();
+    //jQuery("#add-soil-and-water-observation .acquire-photo").unbind();
 
-    jQuery("#add-soil-and-water-observation .acquire-photo").click(function() {
-      jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
-    });
+    if ( jQuery("#add-soil-and-water-observation .acquire-photo").data('events').click === undefined ) {
+      jQuery("#add-soil-and-water-observation .acquire-photo").click(function() {
+        jQuery(document).trigger('photo_capture_request', {obs: obs, acquireFrom: jQuery(this).data('acquire-from')});
+      });
+    }
 
     // get form data and submit to DB
     jQuery('#add-soil-and-water-observation .submit-button').click(function() {
