@@ -56,7 +56,7 @@ rutgers = (function() {
           var imageList = jQuery('.photo-list');
           console.log("Appending Photo "+obs.imageURL);
           // add newly created image to image list
-          imageList.append(cameraImage);
+          imageList.html(cameraImage);
         };
 
         obs.on('image_capture', captureSuccess, obs);
@@ -383,6 +383,8 @@ rutgers = (function() {
       obs.save({}, {
         success: function () {
           obs.upload();
+          // this seem necessary to avoid problems on second upload in category
+          obs = new rutgers.model.PlantsObservation();
         }
       });
 
@@ -416,6 +418,7 @@ rutgers = (function() {
       obs.save({}, {
         success: function () {
           obs.upload();
+          obs = new rutgers.model.AnimalsObservation();
         }
       });
 
@@ -455,6 +458,8 @@ rutgers = (function() {
       obs.save({}, {
         success: function () {
           obs.upload();
+          // this seem necessary to avoid problems on second upload in category
+          obs = new rutgers.model.SoilWaterObservation();
         }
       });
 
@@ -491,6 +496,8 @@ rutgers = (function() {
       obs.save({}, {
         success: function () {
           obs.upload();
+          // this seem necessary to avoid problems on second upload in category
+          obs = new rutgers.model.WeatherObservation();
         }
       });
 
