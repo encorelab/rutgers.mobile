@@ -586,6 +586,7 @@ rutgers = (function() {
   var loginError = function(error){
     //var errorString = JSON.stringify(error);
     console.log('Error '+JSON.stringify(error.responseText));
+    alert('problem during login: '+error.responseText);
   };
 
   var login = function(account, successCallback, errorCallback) {
